@@ -33,8 +33,8 @@ col2.metric("Approuvees", metrics.get("actions_approved", 0))
 col3.metric("Rejetees", metrics.get("actions_rejected", 0))
 col4.metric("Differees", metrics.get("actions_deferred", 0))
 
-tab_plan, tab_selection, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
-    ["Plan", "Selection", "Roblox", "Learning", "Memoire", "Journal"]
+tab_plan, tab_selection, tab_thesis, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
+    ["Plan", "Selection", "Thesis Engine", "Roblox", "Learning", "Memoire", "Journal"]
 )
 
 with tab_plan:
@@ -187,6 +187,94 @@ with tab_selection:
         st.json(report)
     else:
         st.info("Aucun rapport comite genere pour l'instant.")
+
+with tab_thesis:
+    st.subheader("Thesis Engine")
+    st.caption("Justification strategique locale. Le module explique une selection existante sans creer de concept.")
+
+    if st.button("Generer une these"):
+        thesis_result = agent.generate_thesis()
+        if thesis_result.get("status") == "missing_selection":
+            st.warning(thesis_result.get("message"))
+        else:
+            st.success("These generee et stockee localement.")
+        st.rerun()
+
+    thesis_memory = agent.load_thesis_memory()
+    theses = thesis_memory.get("theses", [])
+    latest_thesis = theses[-1] if theses else None
+
+    if latest_thesis:
+        st.markdown("### Opportunite retenue")
+        st.write(f"**{latest_thesis.get('selected_opportunity')}**")
+        thesis_score, thesis_decision, thesis_conviction = st.columns(3)
+        thesis_score.metric("Score", latest_thesis.get("selection_score"))
+        thesis_decision.metric("Decision", str(latest_thesis.get("decision", "")).upper())
+        thesis_conviction.metric("Conviction", f"{latest_thesis.get('conviction')}%")
+
+        st.markdown("### Resume executif")
+        st.write(latest_thesis.get("executive_summary"))
+
+        st.markdown("### Raisons du choix")
+        for reason in latest_thesis.get("reasons", []):
+            st.write(f"- {reason}")
+
+        st.markdown("### Alternatives rejetees")
+        alternatives = [
+            item
+            for item in latest_thesis.get("alternative_comparisons", [])
+            if item.get("decision") == "rejected"
+        ]
+        if alternatives:
+            st.dataframe(
+                [
+                    {
+                        "titre": item.get("title"),
+                        "score_selection": item.get("selection_score"),
+                        "points_forts": " | ".join(item.get("points_forts", [])),
+                        "points_faibles": " | ".join(item.get("points_faibles", [])),
+                        "raison": " | ".join(item.get("raison_du_rejet", [])),
+                    }
+                    for item in alternatives
+                ],
+                use_container_width=True,
+                hide_index=True,
+            )
+        else:
+            st.info("Aucune alternative rejetee dans la derniere these.")
+
+        st.markdown("### Pourquoi cette decision pourrait etre mauvaise ?")
+        for counter in latest_thesis.get("counter_arguments", []):
+            st.write(f"- {counter}")
+
+        st.markdown("### Scenarios d'echec")
+        for scenario in latest_thesis.get("failure_scenarios", []):
+            st.write(f"- {scenario}")
+
+        st.markdown("### Hypotheses fragiles")
+        for assumption in latest_thesis.get("fragile_assumptions", []):
+            st.write(f"- {assumption}")
+    else:
+        st.info("Aucune these generee. Lancez d'abord un rapport comite, puis genere une these.")
+
+    st.markdown("### Historique des theses")
+    if theses:
+        st.dataframe(
+            [
+                {
+                    "date": item.get("date"),
+                    "opportunite": item.get("selected_opportunity"),
+                    "decision": item.get("decision"),
+                    "score": item.get("selection_score"),
+                    "conviction": item.get("conviction"),
+                }
+                for item in theses
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Historique vide.")
 
 with tab_roblox:
     st.subheader("Roblox Intelligence")

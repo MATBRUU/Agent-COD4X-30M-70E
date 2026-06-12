@@ -42,6 +42,8 @@ Construire un socle minimal pour :
 |   |-- selection/
 |   |   |-- committee_report.json
 |   |   `-- opportunities.json
+|   |-- thesis/
+|   |   `-- theses.json
 |   `-- state.json
 |-- src/
 |   |-- agent.py
@@ -52,14 +54,18 @@ Construire un socle minimal pour :
 |   |   `-- outcome_tracker.py
 |   |-- planner.py
 |   |-- roblox/
-|       |-- concept_generator.py
-|       |-- spec_generator.py
-|       |-- scoring_engine.py
-|       `-- trend_analyzer.py
-|   `-- selection/
-|       |-- committee_report.py
-|       |-- opportunity_collector.py
-|       `-- selection_engine.py
+|   |   |-- concept_generator.py
+|   |   |-- spec_generator.py
+|   |   |-- scoring_engine.py
+|   |   `-- trend_analyzer.py
+|   |-- selection/
+|   |   |-- committee_report.py
+|   |   |-- opportunity_collector.py
+|   |   `-- selection_engine.py
+|   `-- thesis/
+|       |-- opportunity_comparator.py
+|       |-- recommendation_builder.py
+|       `-- thesis_engine.py
 |-- README.md
 `-- requirements.txt
 ```
@@ -252,6 +258,50 @@ Memoires :
 - `memory/selection/committee_report.json`
 
 Statut : experimental controle. Le module propose une priorite strategique, mais ne publie rien, ne contacte personne, ne connecte aucun wallet, ne declenche aucun paiement et n'execute aucune action externe.
+
+## Thesis Engine V1.3
+
+COD4X V1.3 transforme la selection V1.2 en these defendable. Le moteur ne choisit pas de nouvelles opportunites et ne cree aucun concept : il lit le rapport de comite existant, justifie l'opportunite retenue, compare les alternatives et produit une etape anti-biais obligatoire.
+
+Le Thesis Engine produit :
+
+- opportunite retenue ;
+- score et conviction ;
+- resume executif ;
+- hypotheses principales ;
+- avantages et inconvenients ;
+- risques ;
+- ressources necessaires ;
+- temps, cout et potentiel estimes ;
+- raisons du choix ;
+- comparaison des alternatives rejetees, surveillees ou bloquees ;
+- recommandation : pursue, watch, reject ou wait ;
+- contre-arguments, scenarios d'echec et hypotheses fragiles.
+
+Commandes :
+
+```bash
+python src/agent.py thesis
+python src/agent.py thesis-history
+```
+
+Memoire :
+
+- `memory/thesis/theses.json`
+
+### Logique anti-biais
+
+Chaque these doit repondre a la question : "Pourquoi cette decision pourrait etre mauvaise ?"
+
+COD4X genere donc :
+
+- arguments contre sa propre decision ;
+- scenarios d'echec ;
+- hypotheses fragiles.
+
+Cette couche evite l'auto-confirmation : COD4X ne se contente pas de dire "je choisis ceci", il explique aussi ou son raisonnement peut casser.
+
+Statut : experimental controle. Le module justifie uniquement des decisions existantes. Il ne lance aucune action externe, ne fait aucun scraping, n'appelle aucune API et ne genere aucun nouveau concept.
 
 ## Roblox Intelligence V2.1
 

@@ -20,6 +20,7 @@ try:
     from .selection.committee_report import generate_and_store_committee_report, load_committee_report
     from .selection.opportunity_collector import collect_and_store_opportunities, load_opportunity_memory
     from .selection.selection_engine import select_opportunities
+    from .thesis.thesis_engine import generate_and_store_thesis, load_thesis_memory
 except ImportError:  # Allows `python src/agent.py`.
     from evaluator import score_actions
     from learning.conviction_engine import collect_scored_sources, generate_and_store_rationales, load_rationale_memory
@@ -32,6 +33,7 @@ except ImportError:  # Allows `python src/agent.py`.
     from selection.committee_report import generate_and_store_committee_report, load_committee_report
     from selection.opportunity_collector import collect_and_store_opportunities, load_opportunity_memory
     from selection.selection_engine import select_opportunities
+    from thesis.thesis_engine import generate_and_store_thesis, load_thesis_memory
 
 
 VALID_DECISIONS = {"approved", "rejected", "deferred"}
@@ -58,6 +60,8 @@ class Cod4xAgent:
         self.selection_memory_dir = self.memory_dir / "selection"
         self.opportunities_path = self.selection_memory_dir / "opportunities.json"
         self.committee_report_path = self.selection_memory_dir / "committee_report.json"
+        self.thesis_memory_dir = self.memory_dir / "thesis"
+        self.theses_path = self.thesis_memory_dir / "theses.json"
 
     def load_memory(self) -> dict[str, Any]:
         """Read persistent local memory."""
@@ -206,6 +210,18 @@ class Cod4xAgent:
             path=self.committee_report_path,
         )
 
+    def load_thesis_memory(self) -> dict[str, Any]:
+        """Read local thesis history."""
+        return load_thesis_memory(self.theses_path)
+
+    def generate_thesis(self) -> dict[str, Any]:
+        """Generate a thesis from the current committee report."""
+        committee_report = load_committee_report(self.committee_report_path)
+        return generate_and_store_thesis(
+            committee_report=committee_report,
+            path=self.theses_path,
+        )
+
     def read_decisions(self) -> list[dict[str, Any]]:
         """Read the JSONL decision journal."""
         if not self.decisions_path.exists():
@@ -296,6 +312,8 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("opportunities", help="Collect local opportunities")
     subparsers.add_parser("select-opportunity", help="Select one strategic opportunity")
     subparsers.add_parser("committee-report", help="Generate the local committee report")
+    subparsers.add_parser("thesis", help="Generate a strategic thesis from the current committee report")
+    subparsers.add_parser("thesis-history", help="Read local thesis history")
     subparsers.add_parser("outcome-list", help="List tracked outcomes")
     subparsers.add_parser("conviction-report", help="Generate score rationales")
     subparsers.add_parser("learning-report", help="Generate the local learning report")
@@ -360,6 +378,14 @@ def main() -> None:
 
     if args.command == "committee-report":
         print(json.dumps(agent.generate_committee_report(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "thesis":
+        print(json.dumps(agent.generate_thesis(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "thesis-history":
+        print(json.dumps(agent.load_thesis_memory(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "outcome-list":
