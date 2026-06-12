@@ -1,7 +1,7 @@
 {
   "version": 1,
   "agent": "COD4X",
-  "updated_at": "2026-06-12T17:21:09Z",
+  "updated_at": "2026-06-12T20:33:37Z",
   "mission": "Agent strategique local oriente creation de revenus numeriques.",
   "decision_policy": {
     "requires_human_approval": true,

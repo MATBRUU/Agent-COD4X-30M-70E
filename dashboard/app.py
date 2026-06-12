@@ -33,7 +33,7 @@ col2.metric("Approuvees", metrics.get("actions_approved", 0))
 col3.metric("Rejetees", metrics.get("actions_rejected", 0))
 col4.metric("Differees", metrics.get("actions_deferred", 0))
 
-tab_plan, tab_roblox, tab_memory, tab_log = st.tabs(["Plan", "Roblox", "Memoire", "Journal"])
+tab_plan, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(["Plan", "Roblox", "Learning", "Memoire", "Journal"])
 
 with tab_plan:
     st.subheader("Actions hebdomadaires")
@@ -86,15 +86,21 @@ with tab_roblox:
     if not concepts and trends:
         concept_memory = agent.generate_roblox_concepts()
         concepts = concept_memory.get("concepts", [])
+    spec_memory = roblox_memory["specs"]
+    specs = spec_memory.get("specs", [])
+    if not specs and (concepts or trends):
+        spec_memory = agent.generate_roblox_specs()
+        specs = spec_memory.get("specs", [])
 
     average = 0.0
     if concepts:
         average = round(sum(float(concept.get("score", 0)) for concept in concepts) / len(concepts), 1)
     top_score = max((float(concept.get("score", 0)) for concept in concepts), default=0.0)
 
-    metric_left, metric_mid, metric_right, metric_last = st.columns(4)
+    metric_left, metric_mid, metric_specs, metric_right, metric_last = st.columns(5)
     metric_left.metric("Tendances", len(trends))
     metric_mid.metric("Concepts > 8/10", len(concepts))
+    metric_specs.metric("Specs generees", len(specs))
     metric_right.metric("Score moyen", f"{average}/10")
     metric_last.metric("Top score", f"{top_score}/10")
 
@@ -127,12 +133,19 @@ with tab_roblox:
                         }
                     )
                     agent.generate_roblox_concepts()
+                    agent.generate_roblox_specs()
                     st.success("Tendance enregistree et concepts recalcules localement.")
                     st.rerun()
 
     if st.button("Regenerer les concepts Roblox"):
         agent.generate_roblox_concepts()
+        agent.generate_roblox_specs()
         st.success("Concepts recalcules localement.")
+        st.rerun()
+
+    if st.button("Lancer le pipeline Roblox V2.2"):
+        agent.run_roblox_pipeline()
+        st.success("Pipeline local execute : tendances, concepts, scoring et specs.")
         st.rerun()
 
     st.markdown("### Tendances detectees")
@@ -212,6 +225,51 @@ with tab_roblox:
     else:
         st.info("Aucun top concept disponible.")
 
+    st.markdown("### Roblox Specs")
+    if specs:
+        top_specs = sorted(specs, key=lambda item: float(item.get("score_final", 0)), reverse=True)
+        top_spec = top_specs[0]
+        st.write(f"**Top spec :** {top_spec.get('nom')} ({top_spec.get('score_final')}/10)")
+        st.write(f"**Temps de developpement estime :** {top_spec.get('mvp', {}).get('temps_estime')}")
+        st.write(f"**Scripts requis :** {', '.join(top_spec.get('mvp', {}).get('scripts_requis', []))}")
+
+        monetisation = top_spec.get("monetisation", {})
+        monetisation_rows = [
+            {
+                "type": "gamepasses",
+                "propositions": ", ".join(monetisation.get("gamepasses", [])),
+            },
+            {
+                "type": "dev_products",
+                "propositions": ", ".join(monetisation.get("dev_products", [])),
+            },
+            {
+                "type": "premium_benefits",
+                "propositions": ", ".join(monetisation.get("premium_benefits", [])),
+            },
+        ]
+        st.dataframe(monetisation_rows, use_container_width=True, hide_index=True)
+
+        for spec in top_specs[:3]:
+            with st.container(border=True):
+                spec_left, spec_right = st.columns([4, 1])
+                spec_left.markdown(f"#### {spec.get('nom')}")
+                spec_right.metric("Score", spec.get("score_final"))
+                st.write(f"**Genre :** {spec.get('genre')}")
+                st.write(f"**Promesse joueur :** {spec.get('promesse_joueur')}")
+                st.write(f"**Public cible :** {', '.join(spec.get('public_cible', []))}")
+                st.write(f"**Core loop :** {spec.get('core_loop')}")
+                st.write(f"**Meta progression :** {spec.get('meta_progression')}")
+                st.write(f"**Premiere session :** {' | '.join(spec.get('premiere_session', []))}")
+                st.write(f"**Retention J1 :** {' | '.join(spec.get('retention_j1', []))}")
+                st.write(f"**Retention J7 :** {' | '.join(spec.get('retention_j7', []))}")
+                st.write(f"**UI requise :** {', '.join(spec.get('mvp', {}).get('ui_requise', []))}")
+                st.write(f"**Assets requis :** {', '.join(spec.get('mvp', {}).get('assets_requis', []))}")
+                st.write(f"**Risques :** {' | '.join(spec.get('risques', []))}")
+                st.write(f"**Concurrents :** {' | '.join(spec.get('concurrents', []))}")
+    else:
+        st.info("Aucune fiche de jeu generee.")
+
     st.markdown("### Rapport hebdomadaire")
     st.markdown(agent.build_roblox_report())
 
@@ -226,6 +284,112 @@ with tab_roblox:
         st.dataframe(roblox_decisions, use_container_width=True, hide_index=True)
     else:
         st.info("Aucune decision Roblox journalisee.")
+
+with tab_learning:
+    st.subheader("Learning")
+    st.caption("Memoire locale des resultats et boucle d'apprentissage. Aucune action externe.")
+
+    learning_memory = agent.load_learning_memory()
+    outcomes = learning_memory["outcomes"].get("outcomes", [])
+    report_payload = learning_memory["learning_report"]
+    report = report_payload.get("report", {})
+    rationales = learning_memory["score_rationales"].get("rationales", [])
+
+    if st.button("Generer les convictions"):
+        agent.generate_conviction_report()
+        st.success("Justifications de score generees localement.")
+        st.rerun()
+
+    if st.button("Actualiser le rapport learning"):
+        agent.generate_learning_report()
+        st.success("Rapport d'apprentissage mis a jour localement.")
+        st.rerun()
+
+    with st.expander("Enregistrer un resultat"):
+        with st.form("learning-outcome-form"):
+            source_type = st.selectbox("Type", ["action", "roblox_concept", "other"])
+            source_id = st.text_input("ID source")
+            title = st.text_input("Titre")
+            initial_score = st.number_input("Score initial", min_value=0.0, max_value=100.0, value=0.0, step=0.1)
+            status = st.selectbox("Statut", ["not_started", "in_progress", "completed", "abandoned"])
+            result = st.selectbox("Resultat", ["unknown", "success", "failure", "partial"])
+            effort = st.number_input("Effort reel (heures)", min_value=0.0, value=0.0, step=0.5)
+            cost = st.number_input("Cout reel (EUR)", min_value=0.0, value=0.0, step=1.0)
+            revenue = st.number_input("Revenu reel (EUR)", min_value=0.0, value=0.0, step=1.0)
+            feedback = st.text_area("Feedback qualitatif")
+            reason_abandoned = st.text_area("Raison si abandon")
+            submitted = st.form_submit_button("Enregistrer le resultat")
+
+            if submitted:
+                if not source_id.strip() or not title.strip():
+                    st.error("ID source et titre sont obligatoires.")
+                else:
+                    agent.add_outcome(
+                        {
+                            "source_type": source_type,
+                            "source_id": source_id,
+                            "title": title,
+                            "initial_score": initial_score,
+                            "status": status,
+                            "result": result,
+                            "real_effort_hours": effort,
+                            "real_cost_eur": cost,
+                            "real_revenue_eur": revenue,
+                            "qualitative_feedback": feedback,
+                            "reason_if_abandoned": reason_abandoned,
+                        }
+                    )
+                    agent.generate_learning_report()
+                    st.success("Resultat enregistre localement.")
+                    st.rerun()
+
+    metric_a, metric_b, metric_c, metric_d, metric_e = st.columns(5)
+    metric_a.metric("Idees suivies", report.get("ideas_tracked", len(outcomes)))
+    metric_b.metric("Succes", report.get("success_count", 0))
+    metric_c.metric("Echecs", report.get("failure_count", 0))
+    metric_d.metric("Abandons", report.get("abandoned_count", 0))
+    metric_e.metric("Effort total", f"{report.get('effort_total_hours', 0)} h")
+
+    money_a, money_b, money_c = st.columns(3)
+    money_a.metric("Cout total", f"{report.get('cost_total_eur', 0)} EUR")
+    money_b.metric("Revenu total", f"{report.get('revenue_total_eur', 0)} EUR")
+    money_c.metric("Taux de succes", f"{round(float(report.get('success_rate', 0)) * 100, 1)}%")
+
+    st.markdown("### Outcomes enregistres")
+    if outcomes:
+        st.dataframe(outcomes, use_container_width=True, hide_index=True)
+    else:
+        st.info("Aucun resultat enregistre pour l'instant.")
+
+    st.markdown("### Score / resultat compare")
+    comparisons = report.get("comparisons", [])
+    if comparisons:
+        st.dataframe(comparisons, use_container_width=True, hide_index=True)
+    else:
+        st.info("Aucune comparaison disponible.")
+
+    st.markdown("### Convictions de score")
+    if rationales:
+        st.dataframe(
+            [
+                {
+                    "source_id": rationale.get("source_id"),
+                    "score": rationale.get("score"),
+                    "confidence": rationale.get("confidence_percent"),
+                    "recommendation": rationale.get("recommendation"),
+                    "positif": " | ".join(rationale.get("positive_factors", [])),
+                    "negatif": " | ".join(rationale.get("negative_factors", [])),
+                }
+                for rationale in rationales
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune justification de score generee.")
+
+    st.markdown("### Rapport d'apprentissage")
+    st.json(report)
 
 with tab_memory:
     st.subheader("Doctrine")

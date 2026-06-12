@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-12T20:33:37Z",
+  "source_policy": "local_only",
+  "report": {
+    "generated_at": "2026-06-12T20:33:37Z",
+    "ideas_tracked": 0,
+    "success_rate": 0.0,
+    "abandon_rate": 0.0,
+    "success_count": 0,
+    "failure_count": 0,
+    "partial_count": 0,
+    "abandoned_count": 0,
+    "revenue_total_eur": 0,
+    "cost_total_eur": 0,
+    "effort_total_hours": 0,
+    "probable_scoring_errors": [],
+    "recommendations": [
+      "Commencer par enregistrer les resultats reels des actions et concepts suivis."
+    ],
+    "comparisons": []
+  }
+}

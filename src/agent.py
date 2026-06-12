@@ -10,13 +10,21 @@ from typing import Any
 
 try:
     from .evaluator import score_actions
+    from .learning.conviction_engine import collect_scored_sources, generate_and_store_rationales, load_rationale_memory
+    from .learning.learning_loop import generate_learning_report, load_learning_report
+    from .learning.outcome_tracker import add_or_update_outcome, list_outcomes, load_outcome_memory
     from .planner import propose_weekly_actions
     from .roblox.concept_generator import generate_and_store_concepts, load_concept_memory
+    from .roblox.spec_generator import generate_and_store_specs, load_spec_memory
     from .roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
 except ImportError:  # Allows `python src/agent.py`.
     from evaluator import score_actions
+    from learning.conviction_engine import collect_scored_sources, generate_and_store_rationales, load_rationale_memory
+    from learning.learning_loop import generate_learning_report, load_learning_report
+    from learning.outcome_tracker import add_or_update_outcome, list_outcomes, load_outcome_memory
     from planner import propose_weekly_actions
     from roblox.concept_generator import generate_and_store_concepts, load_concept_memory
+    from roblox.spec_generator import generate_and_store_specs, load_spec_memory
     from roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
 
 
@@ -36,6 +44,11 @@ class Cod4xAgent:
         self.roblox_memory_dir = self.memory_dir / "roblox"
         self.roblox_trends_path = self.roblox_memory_dir / "trends.json"
         self.roblox_concepts_path = self.roblox_memory_dir / "concepts.json"
+        self.roblox_specs_path = self.roblox_memory_dir / "specs.json"
+        self.learning_memory_dir = self.memory_dir / "learning"
+        self.outcomes_path = self.learning_memory_dir / "outcomes.json"
+        self.score_rationales_path = self.learning_memory_dir / "score_rationales.json"
+        self.learning_report_path = self.learning_memory_dir / "learning_report.json"
 
     def load_memory(self) -> dict[str, Any]:
         """Read persistent local memory."""
@@ -61,6 +74,7 @@ class Cod4xAgent:
         return {
             "trends": load_trend_memory(self.roblox_trends_path),
             "concepts": load_concept_memory(self.roblox_concepts_path),
+            "specs": load_spec_memory(self.roblox_specs_path),
         }
 
     def register_roblox_trend(self, trend: dict[str, Any]) -> dict[str, Any]:
@@ -74,6 +88,32 @@ class Cod4xAgent:
             concepts_path=self.roblox_concepts_path,
         )
 
+    def generate_roblox_specs(self) -> dict[str, Any]:
+        """Generate Roblox game specs from high-scoring concepts."""
+        return generate_and_store_specs(
+            concepts_path=self.roblox_concepts_path,
+            specs_path=self.roblox_specs_path,
+        )
+
+    def run_roblox_pipeline(self) -> dict[str, Any]:
+        """Run the full local Roblox V2.2 pipeline."""
+        trends = load_trend_memory(self.roblox_trends_path)
+        concepts = self.generate_roblox_concepts()
+        specs = self.generate_roblox_specs()
+        return {
+            "source_policy": "local_only",
+            "external_execution": False,
+            "steps": [
+                "analyse_tendances_locales",
+                "generation_concepts",
+                "scoring_concepts",
+                "generation_specs",
+            ],
+            "trends": trends,
+            "concepts": concepts,
+            "specs": specs,
+        }
+
     def build_roblox_report(self) -> str:
         """Build a local weekly Roblox report."""
         memory = self.load_roblox_memory()
@@ -81,6 +121,38 @@ class Cod4xAgent:
             trends=memory["trends"].get("trends", []),
             concepts=memory["concepts"].get("concepts", []),
             decisions=self.read_decisions(),
+        )
+
+    def load_learning_memory(self) -> dict[str, Any]:
+        """Read local learning memory."""
+        return {
+            "outcomes": load_outcome_memory(self.outcomes_path),
+            "score_rationales": load_rationale_memory(self.score_rationales_path),
+            "learning_report": load_learning_report(self.learning_report_path),
+        }
+
+    def add_outcome(self, outcome: dict[str, Any]) -> dict[str, Any]:
+        """Add or update one local outcome record."""
+        return add_or_update_outcome(outcome, self.outcomes_path)
+
+    def list_outcomes(self) -> list[dict[str, Any]]:
+        """List local outcome records."""
+        return list_outcomes(self.outcomes_path)
+
+    def generate_conviction_report(self) -> dict[str, Any]:
+        """Generate rationales for currently scored actions and Roblox concepts."""
+        actions = self.propose_actions()
+        roblox_memory = self.load_roblox_memory()
+        concepts = roblox_memory["concepts"].get("concepts", [])
+        sources = collect_scored_sources(actions=actions, roblox_concepts=concepts)
+        return generate_and_store_rationales(sources, self.score_rationales_path)
+
+    def generate_learning_report(self) -> dict[str, Any]:
+        """Generate a local report comparing scores, decisions and outcomes."""
+        return generate_learning_report(
+            outcomes_path=self.outcomes_path,
+            decisions=self.read_decisions(),
+            report_path=self.learning_report_path,
         )
 
     def read_decisions(self) -> list[dict[str, Any]]:
@@ -170,8 +242,13 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers.add_parser("memory", help="Read local memory")
     subparsers.add_parser("actions", help="Propose and score weekly actions")
+    subparsers.add_parser("outcome-list", help="List tracked outcomes")
+    subparsers.add_parser("conviction-report", help="Generate score rationales")
+    subparsers.add_parser("learning-report", help="Generate the local learning report")
     subparsers.add_parser("roblox-memory", help="Read local Roblox memory")
     subparsers.add_parser("roblox-generate", help="Generate and score Roblox concepts")
+    subparsers.add_parser("roblox-specs", help="Generate Roblox game specs")
+    subparsers.add_parser("roblox-pipeline", help="Run local Roblox trend, concept and spec pipeline")
     subparsers.add_parser("roblox-report", help="Print the weekly Roblox report")
 
     roblox_trend_parser = subparsers.add_parser("roblox-trend", help="Register a local Roblox trend")
@@ -188,6 +265,19 @@ def build_parser() -> argparse.ArgumentParser:
     decide_parser.add_argument("--action-id", required=True)
     decide_parser.add_argument("--decision", required=True, choices=sorted(VALID_DECISIONS))
     decide_parser.add_argument("--notes", default="")
+
+    outcome_parser = subparsers.add_parser("outcome-add", help="Add or update one tracked outcome")
+    outcome_parser.add_argument("--source-type", required=True, choices=["action", "roblox_concept", "other"])
+    outcome_parser.add_argument("--source-id", required=True)
+    outcome_parser.add_argument("--title", required=True)
+    outcome_parser.add_argument("--initial-score", type=float, default=0.0)
+    outcome_parser.add_argument("--status", choices=["not_started", "in_progress", "completed", "abandoned"], default="not_started")
+    outcome_parser.add_argument("--result", choices=["unknown", "success", "failure", "partial"], default="unknown")
+    outcome_parser.add_argument("--real-effort-hours", type=float, default=0.0)
+    outcome_parser.add_argument("--real-cost-eur", type=float, default=0.0)
+    outcome_parser.add_argument("--real-revenue-eur", type=float, default=0.0)
+    outcome_parser.add_argument("--qualitative-feedback", default="")
+    outcome_parser.add_argument("--reason-if-abandoned", default="")
     return parser
 
 
@@ -205,12 +295,52 @@ def main() -> None:
         print(json.dumps(actions, indent=2, ensure_ascii=False))
         return
 
+    if args.command == "outcome-list":
+        print(json.dumps(agent.list_outcomes(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "outcome-add":
+        outcome = agent.add_outcome(
+            {
+                "source_type": args.source_type,
+                "source_id": args.source_id,
+                "title": args.title,
+                "initial_score": args.initial_score,
+                "status": args.status,
+                "result": args.result,
+                "real_effort_hours": args.real_effort_hours,
+                "real_cost_eur": args.real_cost_eur,
+                "real_revenue_eur": args.real_revenue_eur,
+                "qualitative_feedback": args.qualitative_feedback,
+                "reason_if_abandoned": args.reason_if_abandoned,
+            }
+        )
+        agent.generate_learning_report()
+        print(json.dumps(outcome, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "conviction-report":
+        print(json.dumps(agent.generate_conviction_report(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "learning-report":
+        print(json.dumps(agent.generate_learning_report(), indent=2, ensure_ascii=False))
+        return
+
     if args.command == "roblox-memory":
         print(json.dumps(agent.load_roblox_memory(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "roblox-generate":
         print(json.dumps(agent.generate_roblox_concepts(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "roblox-specs":
+        print(json.dumps(agent.generate_roblox_specs(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "roblox-pipeline":
+        print(json.dumps(agent.run_roblox_pipeline(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "roblox-report":

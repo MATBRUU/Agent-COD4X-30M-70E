@@ -1,0 +1,566 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-12T20:15:40Z",
+  "source_policy": "local_only",
+  "last_generation": {
+    "generated_at": "2026-06-12T20:15:40Z",
+    "source_concept_count": 6,
+    "spec_count": 6,
+    "used_demo_data": false
+  },
+  "specs": [
+    {
+      "id": "spec-roblox-cozy-collection-roleplay-mvp",
+      "concept_id": "roblox-cozy-collection-roleplay-mvp",
+      "generated_at": "2026-06-12T20:15:40Z",
+      "nom": "Roleplay cozy avec collection et decoration",
+      "genre": "Roleplay cozy / social",
+      "public_cible": [
+        "joueurs casual",
+        "fans de decoration",
+        "communautes roleplay"
+      ],
+      "promesse_joueur": "Version reduite et testable de la tendance, centree sur une boucle jouable en moins de 3 minutes et une progression visible.",
+      "core_loop": "collection d'objets -> decoration de pieces -> visites entre joueurs",
+      "meta_progression": "Niveaux de compte, objets cosmetiques, objectifs quotidiens et upgrades non pay-to-win.",
+      "premiere_session": [
+        "Arrivee dans un lobby simple avec une promesse claire.",
+        "Tutoriel interactif de moins de 90 secondes.",
+        "Premiere boucle : collection d'objets -> decoration de pieces -> visites entre joueurs.",
+        "Recompense cosmetique locale et invitation a rejouer une seconde manche."
+      ],
+      "retention_j1": [
+        "Bonus de retour non financier.",
+        "Objectif quotidien court lie au core loop.",
+        "Nouveau cosmetique ou badge local a debloquer."
+      ],
+      "retention_j7": [
+        "Mini-saison hebdomadaire avec 5 objectifs.",
+        "Variation de theme pour renouveler la boucle.",
+        "Recompense de statut visible mais non pay-to-win."
+      ],
+      "monetisation": {
+        "gamepasses": [
+          "Pack cosmetique fondateur",
+          "Emplacements de sauvegarde supplementaires",
+          "Themes premium visuels"
+        ],
+        "dev_products": [
+          "Boost cosmetique temporaire",
+          "Pack monnaie soft limitee"
+        ],
+        "premium_benefits": [
+          "Bonus quotidien cosmetique",
+          "Tag premium discret dans le lobby",
+          "Slot de sauvegarde visuelle bonus"
+        ]
+      },
+      "mvp": {
+        "temps_estime": "2-3 semaines",
+        "scripts_requis": [
+          "GameLoop.server.lua",
+          "PlayerData.server.lua",
+          "RewardService.server.lua",
+          "SessionTutorial.client.lua",
+          "ProgressionService.server.lua"
+        ],
+        "ui_requise": [
+          "Lobby HUD",
+          "Objectif courant",
+          "Ecran recompense",
+          "Menu progression"
+        ],
+        "assets_requis": [
+          "Lobby simple",
+          "Icones UI",
+          "Effets de recompense",
+          "Objets cosmetiques de base",
+          "Pieces decorables",
+          "Mobilier modulaire",
+          "Palette de themes"
+        ]
+      },
+      "risques": [
+        "Risque de scope creep si le contenu cosmetique grandit trop vite.",
+        "Validation humaine requise avant tout test public."
+      ],
+      "concurrents": [
+        "Comparer localement le positionnement de 'Roleplay cozy avec collection et decoration MVP' avec les jeux Roblox du meme genre avant publication.",
+        "Concurrence moderee : potentiel d'angle differenciant si la boucle est lisible."
+      ],
+      "score_final": 8.8,
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_roblox_api",
+        "no_payment",
+        "no_wallet"
+      ]
+    },
+    {
+      "id": "spec-roblox-cozy-collection-roleplay-challenge",
+      "concept_id": "roblox-cozy-collection-roleplay-challenge",
+      "generated_at": "2026-06-12T20:15:40Z",
+      "nom": "Defi social Roleplay cozy avec collection et decoration",
+      "genre": "Roleplay cozy / social",
+      "public_cible": [
+        "joueurs casual",
+        "fans de decoration",
+        "communautes roleplay"
+      ],
+      "promesse_joueur": "Concept axe sur des defis rejouables, faciles a filmer et a comparer entre amis, avec une monetisation cosmetique seulement.",
+      "core_loop": "collection d'objets -> decoration de pieces -> visites entre joueurs",
+      "meta_progression": "Saisons de defis, badges locaux, cosmetiques debloquables et classement hebdomadaire non public en V2.2.",
+      "premiere_session": [
+        "Arrivee dans un lobby simple avec une promesse claire.",
+        "Tutoriel interactif de moins de 90 secondes.",
+        "Premiere boucle : collection d'objets -> decoration de pieces -> visites entre joueurs.",
+        "Recompense cosmetique locale et invitation a rejouer une seconde manche."
+      ],
+      "retention_j1": [
+        "Bonus de retour non financier.",
+        "Objectif quotidien court lie au core loop.",
+        "Nouveau cosmetique ou badge local a debloquer."
+      ],
+      "retention_j7": [
+        "Mini-saison hebdomadaire avec 5 objectifs.",
+        "Variation de theme pour renouveler la boucle.",
+        "Recompense de statut visible mais non pay-to-win."
+      ],
+      "monetisation": {
+        "gamepasses": [
+          "Pack cosmetique fondateur",
+          "Emplacements de sauvegarde supplementaires",
+          "Themes premium visuels"
+        ],
+        "dev_products": [
+          "Boost cosmetique temporaire",
+          "Pack monnaie soft limitee",
+          "Relance de defi bonus"
+        ],
+        "premium_benefits": [
+          "Bonus quotidien cosmetique",
+          "Tag premium discret dans le lobby"
+        ]
+      },
+      "mvp": {
+        "temps_estime": "2-3 semaines",
+        "scripts_requis": [
+          "GameLoop.server.lua",
+          "PlayerData.server.lua",
+          "RewardService.server.lua",
+          "SessionTutorial.client.lua",
+          "ChallengeService.server.lua",
+          "ScoreDisplay.client.lua"
+        ],
+        "ui_requise": [
+          "Lobby HUD",
+          "Objectif courant",
+          "Ecran recompense",
+          "Menu progression",
+          "Panneau defis"
+        ],
+        "assets_requis": [
+          "Lobby simple",
+          "Icones UI",
+          "Effets de recompense",
+          "Objets cosmetiques de base",
+          "Pieces decorables",
+          "Mobilier modulaire",
+          "Palette de themes"
+        ]
+      },
+      "risques": [
+        "Risque de scope creep si le contenu cosmetique grandit trop vite.",
+        "Validation humaine requise avant tout test public."
+      ],
+      "concurrents": [
+        "Comparer localement le positionnement de 'Defi social Roleplay cozy avec collection et decoration' avec les jeux Roblox du meme genre avant publication.",
+        "Concurrence moderee : potentiel d'angle differenciant si la boucle est lisible."
+      ],
+      "score_final": 8.6,
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_roblox_api",
+        "no_payment",
+        "no_wallet"
+      ]
+    },
+    {
+      "id": "spec-roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+      "concept_id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+      "generated_at": "2026-06-12T20:15:40Z",
+      "nom": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+      "genre": "Roleplay cozy / social",
+      "public_cible": [
+        "joueurs competitifs casual",
+        "fans anime",
+        "createurs de clips courts"
+      ],
+      "promesse_joueur": "Fusion locale de deux signaux forts pour trouver un angle moins frontalement concurrentiel qu'une copie directe de tendance.",
+      "core_loop": "rounds rapides -> competences debloquables -> classement hebdomadaire; collection d'objets -> decoration de pieces -> visites entre joueurs",
+      "meta_progression": "Double progression : maitrise de la boucle principale et collection cosmetique liee aux objectifs.",
+      "premiere_session": [
+        "Arrivee dans un lobby simple avec une promesse claire.",
+        "Tutoriel interactif de moins de 90 secondes.",
+        "Premiere boucle : rounds rapides -> competences debloquables -> classement hebdomadaire; collection d'objets -> decoration de pieces -> visites entre joueurs.",
+        "Recompense cosmetique locale et invitation a rejouer une seconde manche."
+      ],
+      "retention_j1": [
+        "Bonus de retour non financier.",
+        "Objectif quotidien court lie au core loop.",
+        "Nouveau cosmetique ou badge local a debloquer."
+      ],
+      "retention_j7": [
+        "Mini-saison hebdomadaire avec 5 objectifs.",
+        "Variation de theme pour renouveler la boucle.",
+        "Recompense de statut visible mais non pay-to-win."
+      ],
+      "monetisation": {
+        "gamepasses": [
+          "Pack cosmetique fondateur",
+          "Emplacements de sauvegarde supplementaires",
+          "Themes premium visuels",
+          "Pack emotes cosmetiques"
+        ],
+        "dev_products": [
+          "Boost cosmetique temporaire",
+          "Pack monnaie soft limitee",
+          "Pack progression cosmetique hybride"
+        ],
+        "premium_benefits": [
+          "Bonus quotidien cosmetique",
+          "Tag premium discret dans le lobby"
+        ]
+      },
+      "mvp": {
+        "temps_estime": "6-8 semaines",
+        "scripts_requis": [
+          "GameLoop.server.lua",
+          "PlayerData.server.lua",
+          "RewardService.server.lua",
+          "SessionTutorial.client.lua",
+          "HybridProgression.server.lua",
+          "CollectionService.server.lua"
+        ],
+        "ui_requise": [
+          "Lobby HUD",
+          "Objectif courant",
+          "Ecran recompense",
+          "Menu progression",
+          "Inventaire collection"
+        ],
+        "assets_requis": [
+          "Lobby simple",
+          "Icones UI",
+          "Effets de recompense",
+          "Objets cosmetiques de base",
+          "Arena compacte",
+          "Effets de competences",
+          "Animations combat basiques",
+          "Pieces decorables",
+          "Mobilier modulaire",
+          "Palette de themes"
+        ]
+      },
+      "risques": [
+        "Risque de scope creep si le contenu cosmetique grandit trop vite.",
+        "Validation humaine requise avant tout test public.",
+        "Complexite technique elevee pour une premiere version."
+      ],
+      "concurrents": [
+        "Comparer localement le positionnement de 'Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration' avec les jeux Roblox du meme genre avant publication.",
+        "Concurrence moderee : potentiel d'angle differenciant si la boucle est lisible."
+      ],
+      "score_final": 8.6,
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_roblox_api",
+        "no_payment",
+        "no_wallet"
+      ]
+    },
+    {
+      "id": "spec-roblox-ugc-tycoon-hybrid-mvp",
+      "concept_id": "roblox-ugc-tycoon-hybrid-mvp",
+      "generated_at": "2026-06-12T20:15:40Z",
+      "nom": "Tycoon hybride avec objets UGC-like",
+      "genre": "Tycoon / collection",
+      "public_cible": [
+        "joueurs tycoon",
+        "collectionneurs",
+        "joueurs orientes avatar"
+      ],
+      "promesse_joueur": "Version reduite et testable de la tendance, centree sur une boucle jouable en moins de 3 minutes et une progression visible.",
+      "core_loop": "production incremental -> vitrines d'items -> objectifs saisonniers",
+      "meta_progression": "Niveaux de compte, objets cosmetiques, objectifs quotidiens et upgrades non pay-to-win.",
+      "premiere_session": [
+        "Arrivee dans un lobby simple avec une promesse claire.",
+        "Tutoriel interactif de moins de 90 secondes.",
+        "Premiere boucle : production incremental -> vitrines d'items -> objectifs saisonniers.",
+        "Recompense cosmetique locale et invitation a rejouer une seconde manche."
+      ],
+      "retention_j1": [
+        "Bonus de retour non financier.",
+        "Objectif quotidien court lie au core loop.",
+        "Nouveau cosmetique ou badge local a debloquer."
+      ],
+      "retention_j7": [
+        "Mini-saison hebdomadaire avec 5 objectifs.",
+        "Variation de theme pour renouveler la boucle.",
+        "Recompense de statut visible mais non pay-to-win."
+      ],
+      "monetisation": {
+        "gamepasses": [
+          "Pack cosmetique fondateur",
+          "Emplacements de sauvegarde supplementaires",
+          "Themes premium visuels"
+        ],
+        "dev_products": [
+          "Boost cosmetique temporaire",
+          "Pack monnaie soft limitee"
+        ],
+        "premium_benefits": [
+          "Bonus quotidien cosmetique",
+          "Tag premium discret dans le lobby",
+          "Slot de sauvegarde visuelle bonus"
+        ]
+      },
+      "mvp": {
+        "temps_estime": "2-3 semaines",
+        "scripts_requis": [
+          "GameLoop.server.lua",
+          "PlayerData.server.lua",
+          "RewardService.server.lua",
+          "SessionTutorial.client.lua",
+          "ProgressionService.server.lua"
+        ],
+        "ui_requise": [
+          "Lobby HUD",
+          "Objectif courant",
+          "Ecran recompense",
+          "Menu progression"
+        ],
+        "assets_requis": [
+          "Lobby simple",
+          "Icones UI",
+          "Effets de recompense",
+          "Objets cosmetiques de base",
+          "Stations de production",
+          "Vitrines d'objets",
+          "Props de collection"
+        ]
+      },
+      "risques": [
+        "Risque de scope creep si le contenu cosmetique grandit trop vite.",
+        "Validation humaine requise avant tout test public."
+      ],
+      "concurrents": [
+        "Comparer localement le positionnement de 'Tycoon hybride avec objets UGC-like MVP' avec les jeux Roblox du meme genre avant publication.",
+        "Concurrence moderee : potentiel d'angle differenciant si la boucle est lisible."
+      ],
+      "score_final": 8.5,
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_roblox_api",
+        "no_payment",
+        "no_wallet"
+      ]
+    },
+    {
+      "id": "spec-roblox-ugc-tycoon-hybrid-challenge",
+      "concept_id": "roblox-ugc-tycoon-hybrid-challenge",
+      "generated_at": "2026-06-12T20:15:40Z",
+      "nom": "Defi social Tycoon hybride avec objets UGC-like",
+      "genre": "Tycoon / collection",
+      "public_cible": [
+        "joueurs tycoon",
+        "collectionneurs",
+        "joueurs orientes avatar"
+      ],
+      "promesse_joueur": "Concept axe sur des defis rejouables, faciles a filmer et a comparer entre amis, avec une monetisation cosmetique seulement.",
+      "core_loop": "production incremental -> vitrines d'items -> objectifs saisonniers",
+      "meta_progression": "Saisons de defis, badges locaux, cosmetiques debloquables et classement hebdomadaire non public en V2.2.",
+      "premiere_session": [
+        "Arrivee dans un lobby simple avec une promesse claire.",
+        "Tutoriel interactif de moins de 90 secondes.",
+        "Premiere boucle : production incremental -> vitrines d'items -> objectifs saisonniers.",
+        "Recompense cosmetique locale et invitation a rejouer une seconde manche."
+      ],
+      "retention_j1": [
+        "Bonus de retour non financier.",
+        "Objectif quotidien court lie au core loop.",
+        "Nouveau cosmetique ou badge local a debloquer."
+      ],
+      "retention_j7": [
+        "Mini-saison hebdomadaire avec 5 objectifs.",
+        "Variation de theme pour renouveler la boucle.",
+        "Recompense de statut visible mais non pay-to-win."
+      ],
+      "monetisation": {
+        "gamepasses": [
+          "Pack cosmetique fondateur",
+          "Emplacements de sauvegarde supplementaires",
+          "Themes premium visuels"
+        ],
+        "dev_products": [
+          "Boost cosmetique temporaire",
+          "Pack monnaie soft limitee",
+          "Relance de defi bonus"
+        ],
+        "premium_benefits": [
+          "Bonus quotidien cosmetique",
+          "Tag premium discret dans le lobby"
+        ]
+      },
+      "mvp": {
+        "temps_estime": "4-6 semaines",
+        "scripts_requis": [
+          "GameLoop.server.lua",
+          "PlayerData.server.lua",
+          "RewardService.server.lua",
+          "SessionTutorial.client.lua",
+          "ChallengeService.server.lua",
+          "ScoreDisplay.client.lua"
+        ],
+        "ui_requise": [
+          "Lobby HUD",
+          "Objectif courant",
+          "Ecran recompense",
+          "Menu progression",
+          "Panneau defis"
+        ],
+        "assets_requis": [
+          "Lobby simple",
+          "Icones UI",
+          "Effets de recompense",
+          "Objets cosmetiques de base",
+          "Stations de production",
+          "Vitrines d'objets",
+          "Props de collection"
+        ]
+      },
+      "risques": [
+        "Risque de scope creep si le contenu cosmetique grandit trop vite.",
+        "Validation humaine requise avant tout test public.",
+        "Score proche du seuil : verifier la promesse avant production."
+      ],
+      "concurrents": [
+        "Comparer localement le positionnement de 'Defi social Tycoon hybride avec objets UGC-like' avec les jeux Roblox du meme genre avant publication.",
+        "Concurrence moyenne : eviter la copie directe des formats dominants."
+      ],
+      "score_final": 8.2,
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_roblox_api",
+        "no_payment",
+        "no_wallet"
+      ]
+    },
+    {
+      "id": "spec-roblox-anime-battlegrounds-lite-mvp",
+      "concept_id": "roblox-anime-battlegrounds-lite-mvp",
+      "generated_at": "2026-06-12T20:15:40Z",
+      "nom": "Anime battlegrounds courts et accessibles",
+      "genre": "Arena combat casual",
+      "public_cible": [
+        "joueurs competitifs casual",
+        "fans anime",
+        "createurs de clips courts"
+      ],
+      "promesse_joueur": "Version reduite et testable de la tendance, centree sur une boucle jouable en moins de 3 minutes et une progression visible.",
+      "core_loop": "rounds rapides -> competences debloquables -> classement hebdomadaire",
+      "meta_progression": "Niveaux de compte, objets cosmetiques, objectifs quotidiens et upgrades non pay-to-win.",
+      "premiere_session": [
+        "Arrivee dans un lobby simple avec une promesse claire.",
+        "Tutoriel interactif de moins de 90 secondes.",
+        "Premiere boucle : rounds rapides -> competences debloquables -> classement hebdomadaire.",
+        "Recompense cosmetique locale et invitation a rejouer une seconde manche."
+      ],
+      "retention_j1": [
+        "Bonus de retour non financier.",
+        "Objectif quotidien court lie au core loop.",
+        "Nouveau cosmetique ou badge local a debloquer."
+      ],
+      "retention_j7": [
+        "Mini-saison hebdomadaire avec 5 objectifs.",
+        "Variation de theme pour renouveler la boucle.",
+        "Recompense de statut visible mais non pay-to-win."
+      ],
+      "monetisation": {
+        "gamepasses": [
+          "Pack cosmetique fondateur",
+          "Emplacements de sauvegarde supplementaires",
+          "Pack emotes cosmetiques"
+        ],
+        "dev_products": [
+          "Boost cosmetique temporaire",
+          "Pack monnaie soft limitee"
+        ],
+        "premium_benefits": [
+          "Bonus quotidien cosmetique",
+          "Tag premium discret dans le lobby",
+          "Slot de sauvegarde visuelle bonus"
+        ]
+      },
+      "mvp": {
+        "temps_estime": "4-6 semaines",
+        "scripts_requis": [
+          "GameLoop.server.lua",
+          "PlayerData.server.lua",
+          "RewardService.server.lua",
+          "SessionTutorial.client.lua",
+          "ProgressionService.server.lua"
+        ],
+        "ui_requise": [
+          "Lobby HUD",
+          "Objectif courant",
+          "Ecran recompense",
+          "Menu progression"
+        ],
+        "assets_requis": [
+          "Lobby simple",
+          "Icones UI",
+          "Effets de recompense",
+          "Objets cosmetiques de base",
+          "Arena compacte",
+          "Effets de competences",
+          "Animations combat basiques"
+        ]
+      },
+      "risques": [
+        "Risque de scope creep si le contenu cosmetique grandit trop vite.",
+        "Validation humaine requise avant tout test public.",
+        "Score proche du seuil : verifier la promesse avant production."
+      ],
+      "concurrents": [
+        "Comparer localement le positionnement de 'Anime battlegrounds courts et accessibles MVP' avec les jeux Roblox du meme genre avant publication.",
+        "Concurrence moyenne : eviter la copie directe des formats dominants."
+      ],
+      "score_final": 8.1,
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_roblox_api",
+        "no_payment",
+        "no_wallet"
+      ]
+    }
+  ]
+}

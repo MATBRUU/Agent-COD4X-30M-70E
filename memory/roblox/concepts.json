@@ -1,10 +1,10 @@
 {
   "version": 1,
-  "updated_at": "2026-06-12T20:09:19Z",
+  "updated_at": "2026-06-12T20:15:40Z",
   "source_policy": "local_only",
   "score_threshold": 8.0,
   "last_generation": {
-    "generated_at": "2026-06-12T20:09:19Z",
+    "generated_at": "2026-06-12T20:15:40Z",
     "candidate_count": 7,
     "kept_count": 6,
     "rejected_count": 1,
@@ -47,7 +47,7 @@
       "generated_at": "2026-06-12T20:07:59Z",
       "score": 8.8,
       "rating": "top",
-      "last_scored_at": "2026-06-12T20:09:19Z"
+      "last_scored_at": "2026-06-12T20:15:40Z"
     },
     {
       "id": "roblox-cozy-collection-roleplay-challenge",
@@ -85,7 +85,7 @@
       "generated_at": "2026-06-12T20:07:59Z",
       "score": 8.6,
       "rating": "top",
-      "last_scored_at": "2026-06-12T20:09:19Z"
+      "last_scored_at": "2026-06-12T20:15:40Z"
     },
     {
       "id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
@@ -127,7 +127,7 @@
       "generated_at": "2026-06-12T20:07:59Z",
       "score": 8.6,
       "rating": "top",
-      "last_scored_at": "2026-06-12T20:09:19Z"
+      "last_scored_at": "2026-06-12T20:15:40Z"
     },
     {
       "id": "roblox-ugc-tycoon-hybrid-mvp",
@@ -165,7 +165,7 @@
       "generated_at": "2026-06-12T20:07:59Z",
       "score": 8.5,
       "rating": "top",
-      "last_scored_at": "2026-06-12T20:09:19Z"
+      "last_scored_at": "2026-06-12T20:15:40Z"
     },
     {
       "id": "roblox-ugc-tycoon-hybrid-challenge",
@@ -203,7 +203,7 @@
       "generated_at": "2026-06-12T20:07:59Z",
       "score": 8.2,
       "rating": "top",
-      "last_scored_at": "2026-06-12T20:09:19Z"
+      "last_scored_at": "2026-06-12T20:15:40Z"
     },
     {
       "id": "roblox-anime-battlegrounds-lite-mvp",
@@ -241,7 +241,7 @@
       "generated_at": "2026-06-12T20:07:59Z",
       "score": 8.1,
       "rating": "top",
-      "last_scored_at": "2026-06-12T20:09:19Z"
+      "last_scored_at": "2026-06-12T20:15:40Z"
     }
   ]
 }
