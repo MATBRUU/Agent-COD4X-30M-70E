@@ -1,0 +1,936 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-12T20:53:01Z",
+  "source_policy": "local_only",
+  "report": {
+    "generated_at": "2026-06-12T20:53:01Z",
+    "opportunities_analyzed": 15,
+    "top_opportunity": {
+      "id": "roblox-cozy-collection-roleplay-mvp",
+      "source_type": "roblox_concept",
+      "title": "Roleplay cozy avec collection et decoration MVP",
+      "score": 8.8,
+      "confidence_percent": 90,
+      "estimated_effort_hours": 8.0,
+      "estimated_cost_eur": 0.0,
+      "estimated_revenue_potential": 2160.0,
+      "risk_level": 2,
+      "strategic_fit": 10,
+      "requires_human_validation": true,
+      "external_execution": false,
+      "created_at": "2026-06-12T20:07:59Z",
+      "metadata": {
+        "type": "lean_mvp",
+        "source_trend_ids": [
+          "roblox-cozy-collection-roleplay"
+        ],
+        "constraints": [
+          "local_only",
+          "no_publication",
+          "no_spend",
+          "no_wallet_write"
+        ]
+      },
+      "selection_score": 9.29,
+      "selection_factors": {
+        "score_initial": 8.8,
+        "conviction": 9.0,
+        "risk_inverse": 9.0,
+        "strategic_fit": 10.0,
+        "revenue_component": 10.0,
+        "effort_component": 9.2,
+        "cost_component": 10.0,
+        "history_adjustment": 0.0
+      }
+    },
+    "choice_justification": "Roleplay cozy avec collection et decoration MVP est retenue car elle combine un score de selection de 9.29/10, une conviction de 90%, un risque de 2/10 et un effort estime a 8.0 heure(s).",
+    "alternatives_rejected": [
+      {
+        "id": "cod4x-weekly-offer-map",
+        "title": "Cartographier une micro-offre numerique",
+        "selection_score": 9.11,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.18 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "roblox-cozy-collection-roleplay-challenge",
+        "title": "Defi social Roleplay cozy avec collection et decoration",
+        "selection_score": 8.88,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.41 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "cod4x-weekly-asset-inventory",
+        "title": "Inventorier les actifs monetisables",
+        "selection_score": 8.87,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.42 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "roblox-ugc-tycoon-hybrid-mvp",
+        "title": "Tycoon hybride avec objets UGC-like MVP",
+        "selection_score": 8.85,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.44 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "roblox-ugc-tycoon-hybrid-challenge",
+        "title": "Defi social Tycoon hybride avec objets UGC-like",
+        "selection_score": 8.74,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.55 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+        "title": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+        "selection_score": 8.63,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.66 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "roblox-anime-battlegrounds-lite-mvp",
+        "title": "Anime battlegrounds courts et accessibles MVP",
+        "selection_score": 8.36,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.93 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "cod4x-weekly-validation-plan",
+        "title": "Preparer un protocole de validation humaine",
+        "selection_score": 8.32,
+        "rejection_reason": [
+          "Score de selection inferieur de 0.97 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "spec-roblox-cozy-collection-roleplay-mvp",
+        "title": "Roleplay cozy avec collection et decoration",
+        "selection_score": 7.76,
+        "rejection_reason": [
+          "Score de selection inferieur de 1.53 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "spec-roblox-cozy-collection-roleplay-challenge",
+        "title": "Defi social Roleplay cozy avec collection et decoration",
+        "selection_score": 7.67,
+        "rejection_reason": [
+          "Score de selection inferieur de 1.62 point(s) a l'opportunite retenue."
+        ]
+      },
+      {
+        "id": "spec-roblox-ugc-tycoon-hybrid-mvp",
+        "title": "Tycoon hybride avec objets UGC-like",
+        "selection_score": 7.63,
+        "rejection_reason": [
+          "Score de selection inferieur de 1.66 point(s) a l'opportunite retenue."
+        ]
+      }
+    ],
+    "principal_risks": [
+      "Certaines alternatives sont prometteuses mais demandent plus de preuves."
+    ],
+    "assumptions": [
+      "Les opportunites proviennent uniquement de memoires locales.",
+      "La doctrine COD4X reste prioritaire sur le score brut.",
+      "La selection propose une priorite, pas une execution.",
+      "La validation humaine est obligatoire avant toute action reelle."
+    ],
+    "recommended_human_actions": [
+      "Relire manuellement l'opportunite retenue : Roleplay cozy avec collection et decoration MVP.",
+      "Verifier le temps humain disponible avant de poursuivre.",
+      "Definir un critere de succes local et mesurable.",
+      "Ne lancer aucune action externe sans validation explicite."
+    ],
+    "proposed_decision": "pursue",
+    "guardrails": [
+      "Tout reste local.",
+      "Aucune API externe.",
+      "Aucun scraping.",
+      "Aucun wallet.",
+      "Aucune publication.",
+      "Aucune action financiere.",
+      "Aucune execution externe.",
+      "Validation humaine obligatoire."
+    ],
+    "selection": {
+      "generated_at": "2026-06-12T20:53:01Z",
+      "opportunities_analyzed": 15,
+      "top_opportunity": {
+        "id": "roblox-cozy-collection-roleplay-mvp",
+        "source_type": "roblox_concept",
+        "title": "Roleplay cozy avec collection et decoration MVP",
+        "score": 8.8,
+        "confidence_percent": 90,
+        "estimated_effort_hours": 8.0,
+        "estimated_cost_eur": 0.0,
+        "estimated_revenue_potential": 2160.0,
+        "risk_level": 2,
+        "strategic_fit": 10,
+        "requires_human_validation": true,
+        "external_execution": false,
+        "created_at": "2026-06-12T20:07:59Z",
+        "metadata": {
+          "type": "lean_mvp",
+          "source_trend_ids": [
+            "roblox-cozy-collection-roleplay"
+          ],
+          "constraints": [
+            "local_only",
+            "no_publication",
+            "no_spend",
+            "no_wallet_write"
+          ]
+        },
+        "selection_score": 9.29,
+        "selection_factors": {
+          "score_initial": 8.8,
+          "conviction": 9.0,
+          "risk_inverse": 9.0,
+          "strategic_fit": 10.0,
+          "revenue_component": 10.0,
+          "effort_component": 9.2,
+          "cost_component": 10.0,
+          "history_adjustment": 0.0
+        }
+      },
+      "alternatives_rejected": [
+        {
+          "id": "cod4x-weekly-offer-map",
+          "source_type": "action",
+          "title": "Cartographier une micro-offre numerique",
+          "score": 9.7,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 5.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1000.0,
+          "risk_level": 2,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:53:01Z",
+          "metadata": {
+            "category": "offer_design",
+            "success_metric": "Une fiche d'offre complete et relue.",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend"
+            ]
+          },
+          "selection_score": 9.11,
+          "selection_factors": {
+            "score_initial": 9.7,
+            "conviction": 9.0,
+            "risk_inverse": 9.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 5.0,
+            "effort_component": 10.0,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.18 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-cozy-collection-roleplay-challenge",
+          "source_type": "roblox_concept",
+          "title": "Defi social Roleplay cozy avec collection et decoration",
+          "score": 8.6,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 12.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 2160.0,
+          "risk_level": 4,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:07:59Z",
+          "metadata": {
+            "type": "social_challenge",
+            "source_trend_ids": [
+              "roblox-cozy-collection-roleplay"
+            ],
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend",
+              "no_wallet_write"
+            ]
+          },
+          "selection_score": 8.88,
+          "selection_factors": {
+            "score_initial": 8.6,
+            "conviction": 9.0,
+            "risk_inverse": 7.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 10.0,
+            "effort_component": 8.8,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.41 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "cod4x-weekly-asset-inventory",
+          "source_type": "action",
+          "title": "Inventorier les actifs monetisables",
+          "score": 9.2,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 5.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 800.0,
+          "risk_level": 2,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:53:01Z",
+          "metadata": {
+            "category": "asset_audit",
+            "success_metric": "Au moins 10 actifs ou competences classes.",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend"
+            ]
+          },
+          "selection_score": 8.87,
+          "selection_factors": {
+            "score_initial": 9.2,
+            "conviction": 9.0,
+            "risk_inverse": 9.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 4.0,
+            "effort_component": 10.0,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.42 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-ugc-tycoon-hybrid-mvp",
+          "source_type": "roblox_concept",
+          "title": "Tycoon hybride avec objets UGC-like MVP",
+          "score": 8.5,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 12.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 2160.0,
+          "risk_level": 4,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:07:59Z",
+          "metadata": {
+            "type": "lean_mvp",
+            "source_trend_ids": [
+              "roblox-ugc-tycoon-hybrid"
+            ],
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend",
+              "no_wallet_write"
+            ]
+          },
+          "selection_score": 8.85,
+          "selection_factors": {
+            "score_initial": 8.5,
+            "conviction": 9.0,
+            "risk_inverse": 7.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 10.0,
+            "effort_component": 8.8,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.44 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-ugc-tycoon-hybrid-challenge",
+          "source_type": "roblox_concept",
+          "title": "Defi social Tycoon hybride avec objets UGC-like",
+          "score": 8.2,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 16.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 2160.0,
+          "risk_level": 4,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:07:59Z",
+          "metadata": {
+            "type": "social_challenge",
+            "source_trend_ids": [
+              "roblox-ugc-tycoon-hybrid"
+            ],
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend",
+              "no_wallet_write"
+            ]
+          },
+          "selection_score": 8.74,
+          "selection_factors": {
+            "score_initial": 8.2,
+            "conviction": 9.0,
+            "risk_inverse": 7.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 10.0,
+            "effort_component": 8.4,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.55 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+          "source_type": "roblox_concept",
+          "title": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+          "score": 8.6,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 24.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 2400.0,
+          "risk_level": 5,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:07:59Z",
+          "metadata": {
+            "type": "hybrid",
+            "source_trend_ids": [
+              "roblox-anime-battlegrounds-lite",
+              "roblox-cozy-collection-roleplay"
+            ],
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend",
+              "no_wallet_write"
+            ]
+          },
+          "selection_score": 8.63,
+          "selection_factors": {
+            "score_initial": 8.6,
+            "conviction": 9.0,
+            "risk_inverse": 6.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 10.0,
+            "effort_component": 7.6,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.66 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-anime-battlegrounds-lite-mvp",
+          "source_type": "roblox_concept",
+          "title": "Anime battlegrounds courts et accessibles MVP",
+          "score": 8.1,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 20.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 2280.0,
+          "risk_level": 6,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:07:59Z",
+          "metadata": {
+            "type": "lean_mvp",
+            "source_trend_ids": [
+              "roblox-anime-battlegrounds-lite"
+            ],
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend",
+              "no_wallet_write"
+            ]
+          },
+          "selection_score": 8.36,
+          "selection_factors": {
+            "score_initial": 8.1,
+            "conviction": 9.0,
+            "risk_inverse": 5.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 10.0,
+            "effort_component": 8.0,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.93 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "cod4x-weekly-validation-plan",
+          "source_type": "action",
+          "title": "Preparer un protocole de validation humaine",
+          "score": 8.4,
+          "confidence_percent": 90,
+          "estimated_effort_hours": 5.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 800.0,
+          "risk_level": 4,
+          "strategic_fit": 10,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:53:01Z",
+          "metadata": {
+            "category": "validation",
+            "success_metric": "Une checklist go/no-go utilisable avant publication ou contact.",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_spend"
+            ]
+          },
+          "selection_score": 8.32,
+          "selection_factors": {
+            "score_initial": 8.4,
+            "conviction": 9.0,
+            "risk_inverse": 7.0,
+            "strategic_fit": 10.0,
+            "revenue_component": 4.0,
+            "effort_component": 10.0,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 0.97 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-cozy-collection-roleplay-mvp",
+          "source_type": "roblox_spec",
+          "title": "Roleplay cozy avec collection et decoration",
+          "score": 8.8,
+          "confidence_percent": 79,
+          "estimated_effort_hours": 24.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1440.0,
+          "risk_level": 6,
+          "strategic_fit": 8,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:15:40Z",
+          "metadata": {
+            "concept_id": "roblox-cozy-collection-roleplay-mvp",
+            "genre": "Roleplay cozy / social",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_roblox_api",
+              "no_payment",
+              "no_wallet"
+            ],
+            "mvp": {
+              "temps_estime": "2-3 semaines",
+              "scripts_requis": [
+                "GameLoop.server.lua",
+                "PlayerData.server.lua",
+                "RewardService.server.lua",
+                "SessionTutorial.client.lua",
+                "ProgressionService.server.lua"
+              ],
+              "ui_requise": [
+                "Lobby HUD",
+                "Objectif courant",
+                "Ecran recompense",
+                "Menu progression"
+              ],
+              "assets_requis": [
+                "Lobby simple",
+                "Icones UI",
+                "Effets de recompense",
+                "Objets cosmetiques de base",
+                "Pieces decorables",
+                "Mobilier modulaire",
+                "Palette de themes"
+              ]
+            }
+          },
+          "selection_score": 7.76,
+          "selection_factors": {
+            "score_initial": 8.8,
+            "conviction": 7.9,
+            "risk_inverse": 5.0,
+            "strategic_fit": 8.0,
+            "revenue_component": 7.2,
+            "effort_component": 7.6,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 1.53 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-cozy-collection-roleplay-challenge",
+          "source_type": "roblox_spec",
+          "title": "Defi social Roleplay cozy avec collection et decoration",
+          "score": 8.6,
+          "confidence_percent": 77,
+          "estimated_effort_hours": 24.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1440.0,
+          "risk_level": 6,
+          "strategic_fit": 8,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:15:40Z",
+          "metadata": {
+            "concept_id": "roblox-cozy-collection-roleplay-challenge",
+            "genre": "Roleplay cozy / social",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_roblox_api",
+              "no_payment",
+              "no_wallet"
+            ],
+            "mvp": {
+              "temps_estime": "2-3 semaines",
+              "scripts_requis": [
+                "GameLoop.server.lua",
+                "PlayerData.server.lua",
+                "RewardService.server.lua",
+                "SessionTutorial.client.lua",
+                "ChallengeService.server.lua",
+                "ScoreDisplay.client.lua"
+              ],
+              "ui_requise": [
+                "Lobby HUD",
+                "Objectif courant",
+                "Ecran recompense",
+                "Menu progression",
+                "Panneau defis"
+              ],
+              "assets_requis": [
+                "Lobby simple",
+                "Icones UI",
+                "Effets de recompense",
+                "Objets cosmetiques de base",
+                "Pieces decorables",
+                "Mobilier modulaire",
+                "Palette de themes"
+              ]
+            }
+          },
+          "selection_score": 7.67,
+          "selection_factors": {
+            "score_initial": 8.6,
+            "conviction": 7.7,
+            "risk_inverse": 5.0,
+            "strategic_fit": 8.0,
+            "revenue_component": 7.2,
+            "effort_component": 7.6,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 1.62 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-ugc-tycoon-hybrid-mvp",
+          "source_type": "roblox_spec",
+          "title": "Tycoon hybride avec objets UGC-like",
+          "score": 8.5,
+          "confidence_percent": 76,
+          "estimated_effort_hours": 24.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1440.0,
+          "risk_level": 6,
+          "strategic_fit": 8,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:15:40Z",
+          "metadata": {
+            "concept_id": "roblox-ugc-tycoon-hybrid-mvp",
+            "genre": "Tycoon / collection",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_roblox_api",
+              "no_payment",
+              "no_wallet"
+            ],
+            "mvp": {
+              "temps_estime": "2-3 semaines",
+              "scripts_requis": [
+                "GameLoop.server.lua",
+                "PlayerData.server.lua",
+                "RewardService.server.lua",
+                "SessionTutorial.client.lua",
+                "ProgressionService.server.lua"
+              ],
+              "ui_requise": [
+                "Lobby HUD",
+                "Objectif courant",
+                "Ecran recompense",
+                "Menu progression"
+              ],
+              "assets_requis": [
+                "Lobby simple",
+                "Icones UI",
+                "Effets de recompense",
+                "Objets cosmetiques de base",
+                "Stations de production",
+                "Vitrines d'objets",
+                "Props de collection"
+              ]
+            }
+          },
+          "selection_score": 7.63,
+          "selection_factors": {
+            "score_initial": 8.5,
+            "conviction": 7.6,
+            "risk_inverse": 5.0,
+            "strategic_fit": 8.0,
+            "revenue_component": 7.2,
+            "effort_component": 7.6,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "rejection_reason": [
+            "Score de selection inferieur de 1.66 point(s) a l'opportunite retenue."
+          ]
+        }
+      ],
+      "watchlist": [
+        {
+          "id": "spec-roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+          "source_type": "roblox_spec",
+          "title": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+          "score": 8.6,
+          "confidence_percent": 77,
+          "estimated_effort_hours": 72.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1620.0,
+          "risk_level": 7,
+          "strategic_fit": 8,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:15:40Z",
+          "metadata": {
+            "concept_id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+            "genre": "Roleplay cozy / social",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_roblox_api",
+              "no_payment",
+              "no_wallet"
+            ],
+            "mvp": {
+              "temps_estime": "6-8 semaines",
+              "scripts_requis": [
+                "GameLoop.server.lua",
+                "PlayerData.server.lua",
+                "RewardService.server.lua",
+                "SessionTutorial.client.lua",
+                "HybridProgression.server.lua",
+                "CollectionService.server.lua"
+              ],
+              "ui_requise": [
+                "Lobby HUD",
+                "Objectif courant",
+                "Ecran recompense",
+                "Menu progression",
+                "Inventaire collection"
+              ],
+              "assets_requis": [
+                "Lobby simple",
+                "Icones UI",
+                "Effets de recompense",
+                "Objets cosmetiques de base",
+                "Arena compacte",
+                "Effets de competences",
+                "Animations combat basiques",
+                "Pieces decorables",
+                "Mobilier modulaire",
+                "Palette de themes"
+              ]
+            }
+          },
+          "selection_score": 7.22,
+          "selection_factors": {
+            "score_initial": 8.6,
+            "conviction": 7.7,
+            "risk_inverse": 4.0,
+            "strategic_fit": 8.0,
+            "revenue_component": 8.1,
+            "effort_component": 2.8,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "watch_reason": [
+            "Score intermediaire : interessant, mais pas assez fort pour etre prioritaire.",
+            "Risque eleve a clarifier avant engagement.",
+            "Effort eleve : attendre plus de preuves ou reduire le scope."
+          ]
+        },
+        {
+          "id": "spec-roblox-ugc-tycoon-hybrid-challenge",
+          "source_type": "roblox_spec",
+          "title": "Defi social Tycoon hybride avec objets UGC-like",
+          "score": 8.2,
+          "confidence_percent": 73,
+          "estimated_effort_hours": 48.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1440.0,
+          "risk_level": 7,
+          "strategic_fit": 8,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:15:40Z",
+          "metadata": {
+            "concept_id": "roblox-ugc-tycoon-hybrid-challenge",
+            "genre": "Tycoon / collection",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_roblox_api",
+              "no_payment",
+              "no_wallet"
+            ],
+            "mvp": {
+              "temps_estime": "4-6 semaines",
+              "scripts_requis": [
+                "GameLoop.server.lua",
+                "PlayerData.server.lua",
+                "RewardService.server.lua",
+                "SessionTutorial.client.lua",
+                "ChallengeService.server.lua",
+                "ScoreDisplay.client.lua"
+              ],
+              "ui_requise": [
+                "Lobby HUD",
+                "Objectif courant",
+                "Ecran recompense",
+                "Menu progression",
+                "Panneau defis"
+              ],
+              "assets_requis": [
+                "Lobby simple",
+                "Icones UI",
+                "Effets de recompense",
+                "Objets cosmetiques de base",
+                "Stations de production",
+                "Vitrines d'objets",
+                "Props de collection"
+              ]
+            }
+          },
+          "selection_score": 7.15,
+          "selection_factors": {
+            "score_initial": 8.2,
+            "conviction": 7.3,
+            "risk_inverse": 4.0,
+            "strategic_fit": 8.0,
+            "revenue_component": 7.2,
+            "effort_component": 5.2,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "watch_reason": [
+            "Score intermediaire : interessant, mais pas assez fort pour etre prioritaire.",
+            "Risque eleve a clarifier avant engagement.",
+            "Effort eleve : attendre plus de preuves ou reduire le scope."
+          ]
+        },
+        {
+          "id": "spec-roblox-anime-battlegrounds-lite-mvp",
+          "source_type": "roblox_spec",
+          "title": "Anime battlegrounds courts et accessibles",
+          "score": 8.1,
+          "confidence_percent": 72,
+          "estimated_effort_hours": 48.0,
+          "estimated_cost_eur": 0.0,
+          "estimated_revenue_potential": 1440.0,
+          "risk_level": 7,
+          "strategic_fit": 8,
+          "requires_human_validation": true,
+          "external_execution": false,
+          "created_at": "2026-06-12T20:15:40Z",
+          "metadata": {
+            "concept_id": "roblox-anime-battlegrounds-lite-mvp",
+            "genre": "Arena combat casual",
+            "constraints": [
+              "local_only",
+              "no_publication",
+              "no_roblox_api",
+              "no_payment",
+              "no_wallet"
+            ],
+            "mvp": {
+              "temps_estime": "4-6 semaines",
+              "scripts_requis": [
+                "GameLoop.server.lua",
+                "PlayerData.server.lua",
+                "RewardService.server.lua",
+                "SessionTutorial.client.lua",
+                "ProgressionService.server.lua"
+              ],
+              "ui_requise": [
+                "Lobby HUD",
+                "Objectif courant",
+                "Ecran recompense",
+                "Menu progression"
+              ],
+              "assets_requis": [
+                "Lobby simple",
+                "Icones UI",
+                "Effets de recompense",
+                "Objets cosmetiques de base",
+                "Arena compacte",
+                "Effets de competences",
+                "Animations combat basiques"
+              ]
+            }
+          },
+          "selection_score": 7.1,
+          "selection_factors": {
+            "score_initial": 8.1,
+            "conviction": 7.2,
+            "risk_inverse": 4.0,
+            "strategic_fit": 8.0,
+            "revenue_component": 7.2,
+            "effort_component": 5.2,
+            "cost_component": 10.0,
+            "history_adjustment": 0.0
+          },
+          "watch_reason": [
+            "Score intermediaire : interessant, mais pas assez fort pour etre prioritaire.",
+            "Risque eleve a clarifier avant engagement.",
+            "Effort eleve : attendre plus de preuves ou reduire le scope."
+          ]
+        }
+      ],
+      "blocked_opportunities": []
+    }
+  }
+}

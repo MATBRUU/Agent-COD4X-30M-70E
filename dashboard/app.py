@@ -33,7 +33,9 @@ col2.metric("Approuvees", metrics.get("actions_approved", 0))
 col3.metric("Rejetees", metrics.get("actions_rejected", 0))
 col4.metric("Differees", metrics.get("actions_deferred", 0))
 
-tab_plan, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(["Plan", "Roblox", "Learning", "Memoire", "Journal"])
+tab_plan, tab_selection, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
+    ["Plan", "Selection", "Roblox", "Learning", "Memoire", "Journal"]
+)
 
 with tab_plan:
     st.subheader("Actions hebdomadaires")
@@ -74,6 +76,117 @@ with tab_plan:
                     agent.log_decision(action=action, decision=decision, notes=notes)
                     st.success("Decision enregistree localement.")
                     st.rerun()
+
+with tab_selection:
+    st.subheader("Selection / Committee")
+    st.caption("Priorisation strategique locale. Le module choisit une priorite, sans execution externe.")
+
+    if st.button("Collecter les opportunites"):
+        agent.collect_opportunities()
+        st.success("Opportunites collectees depuis les memoires locales.")
+        st.rerun()
+
+    if st.button("Generer le rapport comite"):
+        agent.generate_committee_report()
+        st.success("Rapport comite genere localement.")
+        st.rerun()
+
+    selection_memory = agent.load_selection_memory()
+    opportunities = selection_memory["opportunities"].get("opportunities", [])
+    if not opportunities:
+        opportunities = agent.collect_opportunities().get("opportunities", [])
+
+    selection_result = agent.select_opportunity() if opportunities else {
+        "top_opportunity": None,
+        "alternatives_rejected": [],
+        "watchlist": [],
+        "blocked_opportunities": [],
+    }
+    top = selection_result.get("top_opportunity")
+
+    st.markdown("### Top opportunity")
+    if top:
+        st.write(f"**{top.get('title')}**")
+        metric_score, metric_conviction, metric_effort, metric_cost, metric_potential = st.columns(5)
+        metric_score.metric("Score selection", top.get("selection_score"))
+        metric_conviction.metric("Conviction", f"{top.get('confidence_percent')}%")
+        metric_effort.metric("Effort estime", f"{top.get('estimated_effort_hours')} h")
+        metric_cost.metric("Cout estime", f"{top.get('estimated_cost_eur')} EUR")
+        metric_potential.metric("Potentiel", top.get("estimated_revenue_potential"))
+        st.write(f"**Source :** {top.get('source_type')}")
+        st.write(f"**Risque :** {top.get('risk_level')}/10")
+        st.write(f"**Fit strategique :** {top.get('strategic_fit')}/10")
+        st.warning("Validation humaine obligatoire avant toute action reelle.", icon="!")
+    else:
+        st.info("Aucune opportunite eligible. Lancez d'abord des actions ou enrichissez les memoires locales.")
+
+    st.markdown("### Alternatives rejetees")
+    rejected = selection_result.get("alternatives_rejected", [])
+    if rejected:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "titre": item.get("title"),
+                    "score_selection": item.get("selection_score"),
+                    "risque": item.get("risk_level"),
+                    "raison": " | ".join(item.get("rejection_reason", [])),
+                }
+                for item in rejected
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune alternative rejetee.")
+
+    st.markdown("### Watchlist")
+    watchlist = selection_result.get("watchlist", [])
+    if watchlist:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "titre": item.get("title"),
+                    "score_selection": item.get("selection_score"),
+                    "effort": item.get("estimated_effort_hours"),
+                    "raison": " | ".join(item.get("watch_reason", [])),
+                }
+                for item in watchlist
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune opportunite en surveillance.")
+
+    st.markdown("### Blocked opportunities")
+    blocked = selection_result.get("blocked_opportunities", [])
+    if blocked:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "titre": item.get("title"),
+                    "source": item.get("source_type"),
+                    "raison": " | ".join(item.get("block_reason", [])),
+                }
+                for item in blocked
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune opportunite bloquee.")
+
+    st.markdown("### Rapport comite")
+    report = selection_memory["committee_report"].get("report", {})
+    if report and report.get("opportunities_analyzed", 0):
+        st.write(f"**Decision proposee :** {report.get('proposed_decision')}")
+        st.write(report.get("choice_justification"))
+        st.json(report)
+    else:
+        st.info("Aucun rapport comite genere pour l'instant.")
 
 with tab_roblox:
     st.subheader("Roblox Intelligence")

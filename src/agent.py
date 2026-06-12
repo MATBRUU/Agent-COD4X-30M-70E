@@ -17,6 +17,9 @@ try:
     from .roblox.concept_generator import generate_and_store_concepts, load_concept_memory
     from .roblox.spec_generator import generate_and_store_specs, load_spec_memory
     from .roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
+    from .selection.committee_report import generate_and_store_committee_report, load_committee_report
+    from .selection.opportunity_collector import collect_and_store_opportunities, load_opportunity_memory
+    from .selection.selection_engine import select_opportunities
 except ImportError:  # Allows `python src/agent.py`.
     from evaluator import score_actions
     from learning.conviction_engine import collect_scored_sources, generate_and_store_rationales, load_rationale_memory
@@ -26,6 +29,9 @@ except ImportError:  # Allows `python src/agent.py`.
     from roblox.concept_generator import generate_and_store_concepts, load_concept_memory
     from roblox.spec_generator import generate_and_store_specs, load_spec_memory
     from roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
+    from selection.committee_report import generate_and_store_committee_report, load_committee_report
+    from selection.opportunity_collector import collect_and_store_opportunities, load_opportunity_memory
+    from selection.selection_engine import select_opportunities
 
 
 VALID_DECISIONS = {"approved", "rejected", "deferred"}
@@ -49,6 +55,9 @@ class Cod4xAgent:
         self.outcomes_path = self.learning_memory_dir / "outcomes.json"
         self.score_rationales_path = self.learning_memory_dir / "score_rationales.json"
         self.learning_report_path = self.learning_memory_dir / "learning_report.json"
+        self.selection_memory_dir = self.memory_dir / "selection"
+        self.opportunities_path = self.selection_memory_dir / "opportunities.json"
+        self.committee_report_path = self.selection_memory_dir / "committee_report.json"
 
     def load_memory(self) -> dict[str, Any]:
         """Read persistent local memory."""
@@ -164,6 +173,39 @@ class Cod4xAgent:
             report_path=self.learning_report_path,
         )
 
+    def load_selection_memory(self) -> dict[str, Any]:
+        """Read local opportunity selection memory."""
+        return {
+            "opportunities": load_opportunity_memory(self.opportunities_path),
+            "committee_report": load_committee_report(self.committee_report_path),
+        }
+
+    def collect_opportunities(self) -> dict[str, Any]:
+        """Collect existing opportunities without creating new concepts."""
+        return collect_and_store_opportunities(
+            state_path=self.state_path,
+            concepts_path=self.roblox_concepts_path,
+            specs_path=self.roblox_specs_path,
+            outcomes_path=self.outcomes_path,
+            rationales_path=self.score_rationales_path,
+            opportunities_path=self.opportunities_path,
+        )
+
+    def select_opportunity(self) -> dict[str, Any]:
+        """Select one top opportunity from the current local opportunity memory."""
+        opportunities = self.collect_opportunities().get("opportunities", [])
+        return select_opportunities(opportunities)
+
+    def generate_committee_report(self) -> dict[str, Any]:
+        """Generate a local non-financial committee report."""
+        opportunities = self.collect_opportunities().get("opportunities", [])
+        doctrine = self.doctrine_path.read_text(encoding="utf-8")
+        return generate_and_store_committee_report(
+            opportunities=opportunities,
+            doctrine=doctrine,
+            path=self.committee_report_path,
+        )
+
     def read_decisions(self) -> list[dict[str, Any]]:
         """Read the JSONL decision journal."""
         if not self.decisions_path.exists():
@@ -251,6 +293,9 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers.add_parser("memory", help="Read local memory")
     subparsers.add_parser("actions", help="Propose and score weekly actions")
+    subparsers.add_parser("opportunities", help="Collect local opportunities")
+    subparsers.add_parser("select-opportunity", help="Select one strategic opportunity")
+    subparsers.add_parser("committee-report", help="Generate the local committee report")
     subparsers.add_parser("outcome-list", help="List tracked outcomes")
     subparsers.add_parser("conviction-report", help="Generate score rationales")
     subparsers.add_parser("learning-report", help="Generate the local learning report")
@@ -303,6 +348,18 @@ def main() -> None:
     if args.command == "actions":
         actions = agent.propose_actions()
         print(json.dumps(actions, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "opportunities":
+        print(json.dumps(agent.collect_opportunities(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "select-opportunity":
+        print(json.dumps(agent.select_opportunity(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "committee-report":
+        print(json.dumps(agent.generate_committee_report(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "outcome-list":

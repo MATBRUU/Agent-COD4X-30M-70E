@@ -39,6 +39,9 @@ Construire un socle minimal pour :
 |   |   |-- concepts.json
 |   |   |-- specs.json
 |   |   `-- trends.json
+|   |-- selection/
+|   |   |-- committee_report.json
+|   |   `-- opportunities.json
 |   `-- state.json
 |-- src/
 |   |-- agent.py
@@ -48,11 +51,15 @@ Construire un socle minimal pour :
 |   |   |-- learning_loop.py
 |   |   `-- outcome_tracker.py
 |   |-- planner.py
-|   `-- roblox/
+|   |-- roblox/
 |       |-- concept_generator.py
 |       |-- spec_generator.py
 |       |-- scoring_engine.py
 |       `-- trend_analyzer.py
+|   `-- selection/
+|       |-- committee_report.py
+|       |-- opportunity_collector.py
+|       `-- selection_engine.py
 |-- README.md
 `-- requirements.txt
 ```
@@ -194,6 +201,57 @@ python src/agent.py learning-report
 ```
 
 Cette boucle ne modifie aucun compte externe. Elle prepare seulement une amelioration progressive du raisonnement de COD4X a partir de donnees locales et validees humainement.
+
+## Opportunity Selection Engine V1.2
+
+COD4X V1.2 transforme les idees deja presentes en opportunites comparables. Le module ne cree aucun nouveau concept : il collecte uniquement ce qui existe deja dans les memoires locales, puis choisit une opportunite principale et explique pourquoi les autres sont ecartees.
+
+Sources collectees :
+
+- `memory/state.json` avec `last_plan` ;
+- `memory/roblox/concepts.json` ;
+- `memory/roblox/specs.json` si present ;
+- `memory/learning/outcomes.json` ;
+- `memory/learning/score_rationales.json` pour la conviction si disponible.
+
+Chaque opportunite est normalisee avec un score, une conviction, un effort estime, un cout estime, un potentiel de revenu, un risque, un fit strategique, et des garde-fous d'execution.
+
+### Logique du comite
+
+Le moteur classe les opportunites selon :
+
+- score initial ;
+- conviction / confiance ;
+- effort estime ;
+- cout estime ;
+- risque ;
+- potentiel ;
+- coherence avec la doctrine ;
+- historique des outcomes similaires.
+
+Il produit :
+
+- une opportunite retenue ;
+- des alternatives rejetees avec raisons ;
+- une watchlist ;
+- des opportunites bloquees.
+
+Le rapport de comite est local et non financier. Il sert uniquement a repondre : quelle opportunite merite vraiment le temps humain disponible ?
+
+Commandes :
+
+```bash
+python src/agent.py opportunities
+python src/agent.py select-opportunity
+python src/agent.py committee-report
+```
+
+Memoires :
+
+- `memory/selection/opportunities.json`
+- `memory/selection/committee_report.json`
+
+Statut : experimental controle. Le module propose une priorite strategique, mais ne publie rien, ne contacte personne, ne connecte aucun wallet, ne declenche aucun paiement et n'execute aucune action externe.
 
 ## Roblox Intelligence V2.1
 
