@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-12T00:00:00Z",
+  "source_policy": "local_only",
+  "trends": [
+    {
+      "id": "roblox-anime-battlegrounds-lite",
+      "name": "Anime battlegrounds courts et accessibles",
+      "source": "local_seed_v2_1",
+      "detected_at": "2026-06-12T00:00:00Z",
+      "strength": 9,
+      "competition": 8,
+      "development_complexity": 7,
+      "signals": [
+        "Sessions courtes faciles a partager",
+        "Progression visible apres chaque partie",
+        "Fort attrait pour les univers inspires anime"
+      ],
+      "audience": [
+        "joueurs competitifs",
+        "fans anime",
+        "createurs de clips courts"
+      ],
+      "mechanics": [
+        "rounds rapides",
+        "competences debloquables",
+        "classement hebdomadaire"
+      ],
+      "monetization_vectors": [
+        "cosmetiques",
+        "passes de progression",
+        "emotes"
+      ],
+      "virality_drivers": [
+        "moments clutch",
+        "combos spectaculaires",
+        "classements sociaux"
+      ],
+      "risk_notes": [
+        "concurrence elevee",
+        "besoin de feeling combat solide"
+      ]
+    },
+    {
+      "id": "roblox-cozy-collection-roleplay",
+      "name": "Roleplay cozy avec collection et decoration",
+      "source": "local_seed_v2_1",
+      "detected_at": "2026-06-12T00:00:00Z",
+      "strength": 8,
+      "competition": 5,
+      "development_complexity": 4,
+      "signals": [
+        "Boucles calmes adaptees aux longues sessions",
+        "Fort potentiel de personnalisation",
+        "Partage social naturel autour des espaces crees"
+      ],
+      "audience": [
+        "joueurs casual",
+        "fans de decoration",
+        "communautes roleplay"
+      ],
+      "mechanics": [
+        "collection d'objets",
+        "decoration de pieces",
+        "visites entre joueurs"
+      ],
+      "monetization_vectors": [
+        "packs cosmetiques",
+        "themes saisonniers",
+        "emplacements de sauvegarde"
+      ],
+      "virality_drivers": [
+        "avant/apres decoration",
+        "defis communautaires",
+        "captures partageables"
+      ],
+      "risk_notes": [
+        "besoin de contenu regulier",
+        "retention dependante de la variete"
+      ]
+    },
+    {
+      "id": "roblox-ugc-tycoon-hybrid",
+      "name": "Tycoon hybride avec objets UGC-like",
+      "source": "local_seed_v2_1",
+      "detected_at": "2026-06-12T00:00:00Z",
+      "strength": 8,
+      "competition": 6,
+      "development_complexity": 5,
+      "signals": [
+        "Boucle tycoon simple a comprendre",
+        "Motivation forte autour de l'identite visuelle",
+        "Possibilite de saisons thematiques"
+      ],
+      "audience": [
+        "joueurs tycoon",
+        "collectionneurs",
+        "joueurs orientes avatar"
+      ],
+      "mechanics": [
+        "production incremental",
+        "vitrines d'items",
+        "objectifs saisonniers"
+      ],
+      "monetization_vectors": [
+        "boosts temporaires",
+        "cosmetiques",
+        "themes premium"
+      ],
+      "virality_drivers": [
+        "showcase avatar",
+        "progression visible",
+        "objectifs de collection"
+      ],
+      "risk_notes": [
+        "attention a ne pas promettre de vrais UGC",
+        "equilibrage economique important"
+      ]
+    }
+  ]
+}

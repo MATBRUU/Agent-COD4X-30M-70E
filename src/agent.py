@@ -11,9 +11,13 @@ from typing import Any
 try:
     from .evaluator import score_actions
     from .planner import propose_weekly_actions
+    from .roblox.concept_generator import generate_and_store_concepts, load_concept_memory
+    from .roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
 except ImportError:  # Allows `python src/agent.py`.
     from evaluator import score_actions
     from planner import propose_weekly_actions
+    from roblox.concept_generator import generate_and_store_concepts, load_concept_memory
+    from roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
 
 
 VALID_DECISIONS = {"approved", "rejected", "deferred"}
@@ -29,6 +33,9 @@ class Cod4xAgent:
         self.doctrine_path = self.memory_dir / "doctrine.md"
         self.state_path = self.memory_dir / "state.json"
         self.decisions_path = self.logs_dir / "decisions.jsonl"
+        self.roblox_memory_dir = self.memory_dir / "roblox"
+        self.roblox_trends_path = self.roblox_memory_dir / "trends.json"
+        self.roblox_concepts_path = self.roblox_memory_dir / "concepts.json"
 
     def load_memory(self) -> dict[str, Any]:
         """Read persistent local memory."""
@@ -48,6 +55,33 @@ class Cod4xAgent:
         state["updated_at"] = utc_now()
         self._write_json(self.state_path, state)
         return scored_actions
+
+    def load_roblox_memory(self) -> dict[str, Any]:
+        """Read Roblox trend and concept memory."""
+        return {
+            "trends": load_trend_memory(self.roblox_trends_path),
+            "concepts": load_concept_memory(self.roblox_concepts_path),
+        }
+
+    def register_roblox_trend(self, trend: dict[str, Any]) -> dict[str, Any]:
+        """Register one Roblox trend locally."""
+        return register_trend(trend, self.roblox_trends_path)
+
+    def generate_roblox_concepts(self) -> dict[str, Any]:
+        """Generate, score and persist Roblox concepts above 8/10."""
+        return generate_and_store_concepts(
+            trends_path=self.roblox_trends_path,
+            concepts_path=self.roblox_concepts_path,
+        )
+
+    def build_roblox_report(self) -> str:
+        """Build a local weekly Roblox report."""
+        memory = self.load_roblox_memory()
+        return weekly_report(
+            trends=memory["trends"].get("trends", []),
+            concepts=memory["concepts"].get("concepts", []),
+            decisions=self.read_decisions(),
+        )
 
     def read_decisions(self) -> list[dict[str, Any]]:
         """Read the JSONL decision journal."""
@@ -136,6 +170,19 @@ def build_parser() -> argparse.ArgumentParser:
 
     subparsers.add_parser("memory", help="Read local memory")
     subparsers.add_parser("actions", help="Propose and score weekly actions")
+    subparsers.add_parser("roblox-memory", help="Read local Roblox memory")
+    subparsers.add_parser("roblox-generate", help="Generate and score Roblox concepts")
+    subparsers.add_parser("roblox-report", help="Print the weekly Roblox report")
+
+    roblox_trend_parser = subparsers.add_parser("roblox-trend", help="Register a local Roblox trend")
+    roblox_trend_parser.add_argument("--name", required=True)
+    roblox_trend_parser.add_argument("--strength", type=int, default=6)
+    roblox_trend_parser.add_argument("--competition", type=int, default=5)
+    roblox_trend_parser.add_argument("--development-complexity", type=int, default=5)
+    roblox_trend_parser.add_argument("--signal", action="append", default=[])
+    roblox_trend_parser.add_argument("--mechanic", action="append", default=[])
+    roblox_trend_parser.add_argument("--monetization", action="append", default=[])
+    roblox_trend_parser.add_argument("--virality", action="append", default=[])
 
     decide_parser = subparsers.add_parser("decide", help="Log a human decision")
     decide_parser.add_argument("--action-id", required=True)
@@ -153,12 +200,41 @@ def main() -> None:
         print(json.dumps(agent.load_memory(), indent=2, ensure_ascii=False))
         return
 
-    actions = agent.propose_actions()
     if args.command == "actions":
+        actions = agent.propose_actions()
         print(json.dumps(actions, indent=2, ensure_ascii=False))
         return
 
+    if args.command == "roblox-memory":
+        print(json.dumps(agent.load_roblox_memory(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "roblox-generate":
+        print(json.dumps(agent.generate_roblox_concepts(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "roblox-report":
+        print(agent.build_roblox_report())
+        return
+
+    if args.command == "roblox-trend":
+        trend = agent.register_roblox_trend(
+            {
+                "name": args.name,
+                "strength": args.strength,
+                "competition": args.competition,
+                "development_complexity": args.development_complexity,
+                "signals": args.signal,
+                "mechanics": args.mechanic,
+                "monetization_vectors": args.monetization,
+                "virality_drivers": args.virality,
+            }
+        )
+        print(json.dumps(trend, indent=2, ensure_ascii=False))
+        return
+
     if args.command == "decide":
+        actions = agent.propose_actions()
         action = next((item for item in actions if item["id"] == args.action_id), {"id": args.action_id})
         record = agent.log_decision(action=action, decision=args.decision, notes=args.notes)
         print(json.dumps(record, indent=2, ensure_ascii=False))

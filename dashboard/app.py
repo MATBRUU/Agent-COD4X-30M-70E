@@ -33,7 +33,7 @@ col2.metric("Approuvees", metrics.get("actions_approved", 0))
 col3.metric("Rejetees", metrics.get("actions_rejected", 0))
 col4.metric("Differees", metrics.get("actions_deferred", 0))
 
-tab_plan, tab_memory, tab_log = st.tabs(["Plan", "Memoire", "Journal"])
+tab_plan, tab_roblox, tab_memory, tab_log = st.tabs(["Plan", "Roblox", "Memoire", "Journal"])
 
 with tab_plan:
     st.subheader("Actions hebdomadaires")
@@ -74,6 +74,158 @@ with tab_plan:
                     agent.log_decision(action=action, decision=decision, notes=notes)
                     st.success("Decision enregistree localement.")
                     st.rerun()
+
+with tab_roblox:
+    st.subheader("Roblox Intelligence")
+    st.caption("Analyse locale uniquement. Aucune publication ni automatisation externe.")
+
+    roblox_memory = agent.load_roblox_memory()
+    trends = roblox_memory["trends"].get("trends", [])
+    concept_memory = roblox_memory["concepts"]
+    concepts = concept_memory.get("concepts", [])
+    if not concepts and trends:
+        concept_memory = agent.generate_roblox_concepts()
+        concepts = concept_memory.get("concepts", [])
+
+    average = 0.0
+    if concepts:
+        average = round(sum(float(concept.get("score", 0)) for concept in concepts) / len(concepts), 1)
+    top_score = max((float(concept.get("score", 0)) for concept in concepts), default=0.0)
+
+    metric_left, metric_mid, metric_right, metric_last = st.columns(4)
+    metric_left.metric("Tendances", len(trends))
+    metric_mid.metric("Concepts > 8/10", len(concepts))
+    metric_right.metric("Score moyen", f"{average}/10")
+    metric_last.metric("Top score", f"{top_score}/10")
+
+    with st.expander("Enregistrer une tendance locale"):
+        with st.form("roblox-trend-form"):
+            trend_name = st.text_input("Nom de la tendance")
+            trend_strength = st.slider("Force du signal", 1, 10, 7)
+            trend_competition = st.slider("Concurrence", 1, 10, 5)
+            trend_complexity = st.slider("Difficulte de developpement", 1, 10, 5)
+            trend_signals = st.text_area("Signaux detectes", placeholder="Un signal par ligne.")
+            trend_mechanics = st.text_area("Mecaniques", placeholder="Une mecanique par ligne.")
+            trend_monetization = st.text_area("Pistes de monetisation", placeholder="Une piste locale par ligne.")
+            trend_virality = st.text_area("Facteurs viraux", placeholder="Un facteur par ligne.")
+            submitted_trend = st.form_submit_button("Enregistrer la tendance")
+
+            if submitted_trend:
+                if not trend_name.strip():
+                    st.error("Le nom de la tendance est obligatoire.")
+                else:
+                    agent.register_roblox_trend(
+                        {
+                            "name": trend_name,
+                            "strength": trend_strength,
+                            "competition": trend_competition,
+                            "development_complexity": trend_complexity,
+                            "signals": trend_signals,
+                            "mechanics": trend_mechanics,
+                            "monetization_vectors": trend_monetization,
+                            "virality_drivers": trend_virality,
+                        }
+                    )
+                    agent.generate_roblox_concepts()
+                    st.success("Tendance enregistree et concepts recalcules localement.")
+                    st.rerun()
+
+    if st.button("Regenerer les concepts Roblox"):
+        agent.generate_roblox_concepts()
+        st.success("Concepts recalcules localement.")
+        st.rerun()
+
+    st.markdown("### Tendances detectees")
+    if trends:
+        st.dataframe(
+            [
+                {
+                    "nom": trend.get("name"),
+                    "force": trend.get("strength"),
+                    "concurrence": trend.get("competition"),
+                    "difficulte": trend.get("development_complexity"),
+                    "source": trend.get("source"),
+                }
+                for trend in trends
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune tendance Roblox locale enregistree.")
+
+    st.markdown("### Concepts generes")
+    if concepts:
+        st.dataframe(
+            [
+                {
+                    "titre": concept.get("title"),
+                    "score": concept.get("score"),
+                    "rating": concept.get("rating"),
+                    "type": concept.get("type"),
+                    "sources": ", ".join(concept.get("source_trend_ids", [])),
+                }
+                for concept in concepts
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucun concept ne depasse le seuil strict de 8/10.")
+
+    st.markdown("### Top concepts")
+    top_concepts = sorted(concepts, key=lambda item: float(item.get("score", 0)), reverse=True)[:3]
+    if top_concepts:
+        for concept in top_concepts:
+            with st.container(border=True):
+                top_left, top_right = st.columns([4, 1])
+                top_left.markdown(f"#### {concept.get('title')}")
+                top_right.metric("Score", concept.get("score"))
+                st.write(concept.get("pitch"))
+                st.write(f"**Boucle coeur :** {concept.get('core_loop')}")
+                st.write(f"**Monetisation locale envisagee :** {', '.join(concept.get('monetization', []))}")
+
+                inputs = concept.get("score_inputs", {})
+                score_cols = st.columns(4)
+                score_cols[0].metric("Viral", inputs.get("viral_potential"))
+                score_cols[1].metric("Monetisation", inputs.get("monetization_potential"))
+                score_cols[2].metric("Difficulte", inputs.get("development_difficulty"))
+                score_cols[3].metric("Concurrence", inputs.get("competition"))
+
+                with st.form(key=f"roblox-decision-{concept.get('id')}"):
+                    decision = st.selectbox(
+                        "Decision humaine",
+                        options=["deferred", "approved", "rejected"],
+                        format_func=lambda value: {
+                            "approved": "Approuver",
+                            "rejected": "Rejeter",
+                            "deferred": "Differer",
+                        }[value],
+                    )
+                    notes = st.text_area("Notes", key=f"roblox-notes-{concept.get('id')}")
+                    submitted = st.form_submit_button("Journaliser")
+
+                    if submitted:
+                        agent.log_decision(action=concept, decision=decision, notes=notes)
+                        st.success("Decision Roblox enregistree localement.")
+                        st.rerun()
+    else:
+        st.info("Aucun top concept disponible.")
+
+    st.markdown("### Rapport hebdomadaire")
+    st.markdown(agent.build_roblox_report())
+
+    st.markdown("### Historique des decisions")
+    roblox_decisions = [
+        decision
+        for decision in agent.read_decisions()
+        if str(decision.get("action_id", "")).startswith("roblox-")
+        or "roblox" in str(decision.get("action_title", "")).lower()
+    ]
+    if roblox_decisions:
+        st.dataframe(roblox_decisions, use_container_width=True, hide_index=True)
+    else:
+        st.info("Aucune decision Roblox journalisee.")
 
 with tab_memory:
     st.subheader("Doctrine")

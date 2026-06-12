@@ -1,0 +1,247 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-12T20:09:19Z",
+  "source_policy": "local_only",
+  "score_threshold": 8.0,
+  "last_generation": {
+    "generated_at": "2026-06-12T20:09:19Z",
+    "candidate_count": 7,
+    "kept_count": 6,
+    "rejected_count": 1,
+    "average_score": 8.5
+  },
+  "concepts": [
+    {
+      "id": "roblox-cozy-collection-roleplay-mvp",
+      "title": "Roleplay cozy avec collection et decoration MVP",
+      "source_trend_ids": [
+        "roblox-cozy-collection-roleplay"
+      ],
+      "type": "lean_mvp",
+      "pitch": "Version reduite et testable de la tendance, centree sur une boucle jouable en moins de 3 minutes et une progression visible.",
+      "core_loop": "collection d'objets -> decoration de pieces -> visites entre joueurs",
+      "monetization": [
+        "packs cosmetiques",
+        "themes saisonniers",
+        "emplacements de sauvegarde"
+      ],
+      "validation_steps": [
+        "Definir une boucle de jeu testable localement",
+        "Lister 5 assets minimum necessaires",
+        "Faire valider le concept par un humain avant toute publication"
+      ],
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend",
+        "no_wallet_write"
+      ],
+      "score_inputs": {
+        "viral_potential": 9,
+        "monetization_potential": 9,
+        "development_difficulty": 2,
+        "competition": 3
+      },
+      "generated_at": "2026-06-12T20:07:59Z",
+      "score": 8.8,
+      "rating": "top",
+      "last_scored_at": "2026-06-12T20:09:19Z"
+    },
+    {
+      "id": "roblox-cozy-collection-roleplay-challenge",
+      "title": "Defi social Roleplay cozy avec collection et decoration",
+      "source_trend_ids": [
+        "roblox-cozy-collection-roleplay"
+      ],
+      "type": "social_challenge",
+      "pitch": "Concept axe sur des defis rejouables, faciles a filmer et a comparer entre amis, avec une monetisation cosmetique seulement.",
+      "core_loop": "collection d'objets -> decoration de pieces -> visites entre joueurs",
+      "monetization": [
+        "packs cosmetiques",
+        "themes saisonniers",
+        "emplacements de sauvegarde"
+      ],
+      "validation_steps": [
+        "Ecrire 10 defis sans dependance externe",
+        "Verifier que chaque defi produit un resultat visible",
+        "Journaliser la decision humaine avant toute action externe"
+      ],
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend",
+        "no_wallet_write"
+      ],
+      "score_inputs": {
+        "viral_potential": 10,
+        "monetization_potential": 8,
+        "development_difficulty": 3,
+        "competition": 4
+      },
+      "generated_at": "2026-06-12T20:07:59Z",
+      "score": 8.6,
+      "rating": "top",
+      "last_scored_at": "2026-06-12T20:09:19Z"
+    },
+    {
+      "id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+      "title": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+      "source_trend_ids": [
+        "roblox-anime-battlegrounds-lite",
+        "roblox-cozy-collection-roleplay"
+      ],
+      "type": "hybrid",
+      "pitch": "Fusion locale de deux signaux forts pour trouver un angle moins frontalement concurrentiel qu'une copie directe de tendance.",
+      "core_loop": "rounds rapides -> competences debloquables -> classement hebdomadaire; collection d'objets -> decoration de pieces -> visites entre joueurs",
+      "monetization": [
+        "cosmetiques",
+        "emotes",
+        "emplacements de sauvegarde",
+        "packs cosmetiques",
+        "passes de progression",
+        "themes saisonniers"
+      ],
+      "validation_steps": [
+        "Verifier que l'hybride tient en un prototype simple",
+        "Retirer toute mecanique qui implique une publication ou une depense",
+        "Obtenir une validation humaine avant tout test public"
+      ],
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend",
+        "no_wallet_write"
+      ],
+      "score_inputs": {
+        "viral_potential": 10,
+        "monetization_potential": 10,
+        "development_difficulty": 6,
+        "competition": 4
+      },
+      "generated_at": "2026-06-12T20:07:59Z",
+      "score": 8.6,
+      "rating": "top",
+      "last_scored_at": "2026-06-12T20:09:19Z"
+    },
+    {
+      "id": "roblox-ugc-tycoon-hybrid-mvp",
+      "title": "Tycoon hybride avec objets UGC-like MVP",
+      "source_trend_ids": [
+        "roblox-ugc-tycoon-hybrid"
+      ],
+      "type": "lean_mvp",
+      "pitch": "Version reduite et testable de la tendance, centree sur une boucle jouable en moins de 3 minutes et une progression visible.",
+      "core_loop": "production incremental -> vitrines d'items -> objectifs saisonniers",
+      "monetization": [
+        "boosts temporaires",
+        "cosmetiques",
+        "themes premium"
+      ],
+      "validation_steps": [
+        "Definir une boucle de jeu testable localement",
+        "Lister 5 assets minimum necessaires",
+        "Faire valider le concept par un humain avant toute publication"
+      ],
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend",
+        "no_wallet_write"
+      ],
+      "score_inputs": {
+        "viral_potential": 9,
+        "monetization_potential": 9,
+        "development_difficulty": 3,
+        "competition": 4
+      },
+      "generated_at": "2026-06-12T20:07:59Z",
+      "score": 8.5,
+      "rating": "top",
+      "last_scored_at": "2026-06-12T20:09:19Z"
+    },
+    {
+      "id": "roblox-ugc-tycoon-hybrid-challenge",
+      "title": "Defi social Tycoon hybride avec objets UGC-like",
+      "source_trend_ids": [
+        "roblox-ugc-tycoon-hybrid"
+      ],
+      "type": "social_challenge",
+      "pitch": "Concept axe sur des defis rejouables, faciles a filmer et a comparer entre amis, avec une monetisation cosmetique seulement.",
+      "core_loop": "production incremental -> vitrines d'items -> objectifs saisonniers",
+      "monetization": [
+        "boosts temporaires",
+        "cosmetiques",
+        "themes premium"
+      ],
+      "validation_steps": [
+        "Ecrire 10 defis sans dependance externe",
+        "Verifier que chaque defi produit un resultat visible",
+        "Journaliser la decision humaine avant toute action externe"
+      ],
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend",
+        "no_wallet_write"
+      ],
+      "score_inputs": {
+        "viral_potential": 10,
+        "monetization_potential": 8,
+        "development_difficulty": 4,
+        "competition": 5
+      },
+      "generated_at": "2026-06-12T20:07:59Z",
+      "score": 8.2,
+      "rating": "top",
+      "last_scored_at": "2026-06-12T20:09:19Z"
+    },
+    {
+      "id": "roblox-anime-battlegrounds-lite-mvp",
+      "title": "Anime battlegrounds courts et accessibles MVP",
+      "source_trend_ids": [
+        "roblox-anime-battlegrounds-lite"
+      ],
+      "type": "lean_mvp",
+      "pitch": "Version reduite et testable de la tendance, centree sur une boucle jouable en moins de 3 minutes et une progression visible.",
+      "core_loop": "rounds rapides -> competences debloquables -> classement hebdomadaire",
+      "monetization": [
+        "cosmetiques",
+        "passes de progression",
+        "emotes"
+      ],
+      "validation_steps": [
+        "Definir une boucle de jeu testable localement",
+        "Lister 5 assets minimum necessaires",
+        "Faire valider le concept par un humain avant toute publication"
+      ],
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend",
+        "no_wallet_write"
+      ],
+      "score_inputs": {
+        "viral_potential": 10,
+        "monetization_potential": 9,
+        "development_difficulty": 5,
+        "competition": 6
+      },
+      "generated_at": "2026-06-12T20:07:59Z",
+      "score": 8.1,
+      "rating": "top",
+      "last_scored_at": "2026-06-12T20:09:19Z"
+    }
+  ]
+}
