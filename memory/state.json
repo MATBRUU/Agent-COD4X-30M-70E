@@ -1,0 +1,131 @@
+{
+  "version": 1,
+  "agent": "COD4X",
+  "updated_at": "2026-06-12T17:21:09Z",
+  "mission": "Agent strategique local oriente creation de revenus numeriques.",
+  "decision_policy": {
+    "requires_human_approval": true,
+    "external_execution_enabled": false,
+    "allowed_v1": [
+      "local_memory_read",
+      "local_action_planning",
+      "local_action_scoring",
+      "local_decision_logging",
+      "local_dashboard"
+    ],
+    "blocked_v1": [
+      "real_financial_action",
+      "automatic_publication",
+      "wallet_write_connection",
+      "external_account_mutation",
+      "autonomous_outreach"
+    ]
+  },
+  "weekly_context": {
+    "focus": "Trouver une action a fort apprentissage et faible risque pour valider une piste de revenu numerique.",
+    "available_hours": 5,
+    "budget_eur": 0,
+    "preferred_assets": [
+      "templates",
+      "scripts",
+      "micro-services",
+      "knowledge products"
+    ]
+  },
+  "metrics": {
+    "ideas_reviewed": 0,
+    "actions_approved": 0,
+    "actions_rejected": 0,
+    "actions_deferred": 0
+  },
+  "last_plan": [
+    {
+      "id": "cod4x-weekly-offer-map",
+      "title": "Cartographier une micro-offre numerique",
+      "category": "offer_design",
+      "rationale": "Transformer le focus hebdomadaire en une offre concrete, avec cible, probleme, promesse, livrable et prix indicatif sans publication.",
+      "local_next_step": "Rediger une fiche d'offre dans un document local.",
+      "success_metric": "Une fiche d'offre complete et relue.",
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend"
+      ],
+      "context": {
+        "focus": "Trouver une action a fort apprentissage et faible risque pour valider une piste de revenu numerique.",
+        "available_hours": 5,
+        "budget_eur": 0
+      },
+      "estimates": {
+        "impact": 5,
+        "risk": 1,
+        "cost": 1,
+        "delay": 2
+      },
+      "score": 97,
+      "rating": "priority"
+    },
+    {
+      "id": "cod4x-weekly-asset-inventory",
+      "title": "Inventorier les actifs monetisables",
+      "category": "asset_audit",
+      "rationale": "Lister les scripts, templates, savoir-faire et workflows deja disponibles afin de choisir une piste monnayable sans construire trop tot.",
+      "local_next_step": "Creer une liste locale avec actif, public cible, douleur et format vendable.",
+      "success_metric": "Au moins 10 actifs ou competences classes.",
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend"
+      ],
+      "context": {
+        "focus": "Trouver une action a fort apprentissage et faible risque pour valider une piste de revenu numerique.",
+        "available_hours": 5,
+        "budget_eur": 0
+      },
+      "estimates": {
+        "impact": 4,
+        "risk": 1,
+        "cost": 1,
+        "delay": 1
+      },
+      "score": 92,
+      "rating": "priority"
+    },
+    {
+      "id": "cod4x-weekly-validation-plan",
+      "title": "Preparer un protocole de validation humaine",
+      "category": "validation",
+      "rationale": "Definir comment une future action externe serait validee par un humain : objectif, risques, preuves attendues, seuil de go/no-go et journalisation.",
+      "local_next_step": "Ecrire une checklist de validation avant toute action externe.",
+      "success_metric": "Une checklist go/no-go utilisable avant publication ou contact.",
+      "requires_human_validation": true,
+      "external_action_required": false,
+      "constraints": [
+        "local_only",
+        "no_publication",
+        "no_spend"
+      ],
+      "context": {
+        "focus": "Trouver une action a fort apprentissage et faible risque pour valider une piste de revenu numerique.",
+        "available_hours": 5,
+        "budget_eur": 0
+      },
+      "estimates": {
+        "impact": 4,
+        "risk": 2,
+        "cost": 1,
+        "delay": 2
+      },
+      "score": 84,
+      "rating": "priority"
+    }
+  ],
+  "notes": [
+    "La V1 reste strictement locale.",
+    "Les actions proposees ne doivent pas declencher d'action externe."
+  ]
+}
