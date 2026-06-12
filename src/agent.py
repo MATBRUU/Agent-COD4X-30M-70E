@@ -140,8 +140,17 @@ class Cod4xAgent:
         return list_outcomes(self.outcomes_path)
 
     def generate_conviction_report(self) -> dict[str, Any]:
-        """Generate rationales for currently scored actions and Roblox concepts."""
-        actions = self.propose_actions()
+        """Generate rationales from the last saved plan and Roblox concepts."""
+        state = self._read_json(self.state_path)
+        actions = state.get("last_plan", [])
+        if not actions:
+            return {
+                "status": "missing_last_plan",
+                "message": "Aucun last_plan disponible. Lancez d'abord: python src/agent.py actions",
+                "source_policy": "local_only",
+                "external_execution": False,
+                "rationales": [],
+            }
         roblox_memory = self.load_roblox_memory()
         concepts = roblox_memory["concepts"].get("concepts", [])
         sources = collect_scored_sources(actions=actions, roblox_concepts=concepts)
@@ -245,6 +254,7 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("outcome-list", help="List tracked outcomes")
     subparsers.add_parser("conviction-report", help="Generate score rationales")
     subparsers.add_parser("learning-report", help="Generate the local learning report")
+    subparsers.add_parser("learning-memory", help="Read local learning memory")
     subparsers.add_parser("roblox-memory", help="Read local Roblox memory")
     subparsers.add_parser("roblox-generate", help="Generate and score Roblox concepts")
     subparsers.add_parser("roblox-specs", help="Generate Roblox game specs")
@@ -325,6 +335,10 @@ def main() -> None:
 
     if args.command == "learning-report":
         print(json.dumps(agent.generate_learning_report(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "learning-memory":
+        print(json.dumps(agent.load_learning_memory(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "roblox-memory":

@@ -95,6 +95,16 @@ python src/agent.py decide --action-id cod4x-weekly-offer-map --decision approve
 
 COD4X V1.1 ajoute une memoire des resultats et une boucle d'apprentissage locale. L'objectif est de ne plus seulement generer des idees, mais aussi de suivre ce qui se passe apres une decision humaine : effort reel, cout reel, revenu reel, succes, echec, abandon ou resultat partiel.
 
+### Stabilisation V1.1.1
+
+V1.1.1 stabilise le coeur Learning avant les extensions V2.2. Le rapport de conviction lit uniquement le dernier plan sauvegarde dans `memory/state.json` (`last_plan`) et ne regenere pas les actions. Si aucun plan n'existe encore, lancer d'abord :
+
+```bash
+python src/agent.py actions
+```
+
+Cette separation evite qu'un simple rapport modifie `state.json`.
+
 ### Memoire des resultats
 
 Les resultats sont stockes dans `memory/learning/outcomes.json`.
@@ -147,6 +157,12 @@ Generer les justifications :
 
 ```bash
 python src/agent.py conviction-report
+```
+
+Afficher toute la memoire Learning :
+
+```bash
+python src/agent.py learning-memory
 ```
 
 ### Boucle d'apprentissage
@@ -207,7 +223,9 @@ Ajouter une tendance locale :
 python src/agent.py roblox-trend --name "Obby narratif court" --strength 8 --competition 4 --development-complexity 4 --signal "Sessions courtes" --mechanic "parcours a choix" --monetization "cosmetiques" --virality "fins partageables"
 ```
 
-### Roblox Game Spec Generator V2.2
+### Roblox Game Spec Generator V2.2 Preview
+
+Le generateur de specs Roblox existe dans ce depot comme preview experimentale V2.2. Il n'appartient pas au coeur Learning V1.1/V1.1.1. La stabilisation V1.1.1 porte sur les outcomes, convictions et rapports d'apprentissage ; Roblox Specs reste une couche separee et locale.
 
 Les fiches de jeux sont generees depuis les concepts conserves dans `memory/roblox/concepts.json` avec un score strictement superieur a `8/10`. Si aucun concept n'existe encore, le generateur utilise une donnee de demonstration locale afin de garder le dashboard exploitable.
 

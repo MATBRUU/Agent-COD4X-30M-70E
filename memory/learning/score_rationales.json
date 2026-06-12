@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-12T20:33:37Z",
+  "updated_at": "2026-06-12T20:42:16Z",
   "source_policy": "local_only",
   "rationales": [
     {
@@ -27,7 +27,7 @@
         "Contraintes declarees : local_only, no_publication, no_spend."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "cod4x-weekly-asset-inventory",
@@ -53,7 +53,7 @@
         "Contraintes declarees : local_only, no_publication, no_spend."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "cod4x-weekly-validation-plan",
@@ -79,7 +79,7 @@
         "Contraintes declarees : local_only, no_publication, no_spend."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "roblox-cozy-collection-roleplay-mvp",
@@ -105,7 +105,7 @@
         "Pas de publication Roblox, pas d'API Roblox et pas de paiement en V1.1."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "roblox-cozy-collection-roleplay-challenge",
@@ -131,7 +131,7 @@
         "Pas de publication Roblox, pas d'API Roblox et pas de paiement en V1.1."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
@@ -157,7 +157,7 @@
         "Pas de publication Roblox, pas d'API Roblox et pas de paiement en V1.1."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "roblox-ugc-tycoon-hybrid-mvp",
@@ -183,7 +183,7 @@
         "Pas de publication Roblox, pas d'API Roblox et pas de paiement en V1.1."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "roblox-ugc-tycoon-hybrid-challenge",
@@ -209,7 +209,7 @@
         "Pas de publication Roblox, pas d'API Roblox et pas de paiement en V1.1."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     },
     {
       "source_id": "roblox-anime-battlegrounds-lite-mvp",
@@ -235,7 +235,7 @@
         "Pas de publication Roblox, pas d'API Roblox et pas de paiement en V1.1."
       ],
       "recommendation": "pursue",
-      "generated_at": "2026-06-12T20:33:37Z"
+      "generated_at": "2026-06-12T20:42:16Z"
     }
   ]
 }

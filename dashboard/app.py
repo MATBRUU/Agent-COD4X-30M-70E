@@ -296,8 +296,11 @@ with tab_learning:
     rationales = learning_memory["score_rationales"].get("rationales", [])
 
     if st.button("Generer les convictions"):
-        agent.generate_conviction_report()
-        st.success("Justifications de score generees localement.")
+        conviction_result = agent.generate_conviction_report()
+        if conviction_result.get("status") == "missing_last_plan":
+            st.warning(conviction_result.get("message"))
+        else:
+            st.success("Justifications de score generees localement.")
         st.rerun()
 
     if st.button("Actualiser le rapport learning"):
