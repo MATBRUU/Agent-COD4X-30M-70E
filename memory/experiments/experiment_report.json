@@ -1,0 +1,276 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-13T10:51:23Z",
+  "source_policy": "local_only",
+  "report": {
+    "generated_at": "2026-06-13T10:51:23Z",
+    "planned_experiments": 17,
+    "priority_experiments": [
+      {
+        "id": "experiment-assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-est-un-proxy-pas-une-preuve-de-rev",
+        "assumption_id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-est-un-proxy-pas-une-preuve-de-rev",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "experiment_title": "Tester: Le potentiel estime est un proxy, pas une preuve de revenu.",
+        "objective": "Verifier localement l'hypothese: Le potentiel estime est un proxy, pas une preuve de revenu.",
+        "method": "Comparer l'estimation a la memoire locale: outcomes, cout reel, effort reel et revenu reel. Noter si une preuve locale soutient ou affaiblit l'hypothese.",
+        "expected_signal": "Un signal local mesurable relie a un revenu, un cout, un effort ou une intention humaine.",
+        "success_criteria": "Une preuve locale medium ou strong permet de reduire l'incertitude critique.",
+        "failure_criteria": "Aucun signal clair n'est trouve, ou le signal contredit l'hypothese critique.",
+        "estimated_effort_hours": 1.5,
+        "estimated_cost_eur": 0.0,
+        "status": "planned",
+        "result": "unknown",
+        "priority_score": 9.82,
+        "priority_reasons": [
+          "hypothese_critique",
+          "non_verifiee",
+          "aucune_preuve_locale",
+          "test_rapide",
+          "cout_zero",
+          "impact_decision"
+        ],
+        "created_at": "2026-06-13T10:47:03Z",
+        "updated_at": "2026-06-13T10:51:22Z"
+      },
+      {
+        "id": "experiment-assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-conviction-depend-de-la-qualite-des-scores-preceden",
+        "assumption_id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-conviction-depend-de-la-qualite-des-scores-preceden",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "experiment_title": "Tester: La conviction depend de la qualite des scores precedents.",
+        "objective": "Verifier localement l'hypothese: La conviction depend de la qualite des scores precedents.",
+        "method": "Relire la these, isoler le passage lie a l'hypothese, puis produire une note locale avec un signal observable, une contradiction possible et une decision humaine proposee.",
+        "expected_signal": "Une observation locale qui soutient ou contredit clairement l'hypothese.",
+        "success_criteria": "Une preuve locale medium ou strong permet de reduire l'incertitude critique.",
+        "failure_criteria": "Aucun signal clair n'est trouve, ou le signal contredit l'hypothese critique.",
+        "estimated_effort_hours": 1.5,
+        "estimated_cost_eur": 0.0,
+        "status": "planned",
+        "result": "unknown",
+        "priority_score": 9.82,
+        "priority_reasons": [
+          "hypothese_critique",
+          "non_verifiee",
+          "aucune_preuve_locale",
+          "test_rapide",
+          "cout_zero",
+          "impact_decision"
+        ],
+        "created_at": "2026-06-13T10:47:03Z",
+        "updated_at": "2026-06-13T10:51:22Z"
+      },
+      {
+        "id": "experiment-assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-l-absence-d-opportunite-bloquee-ne-signifie-pas-absenc",
+        "assumption_id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-l-absence-d-opportunite-bloquee-ne-signifie-pas-absenc",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "experiment_title": "Tester: L'absence d'opportunite bloquee ne signifie pas absence de risque.",
+        "objective": "Verifier localement l'hypothese: L'absence d'opportunite bloquee ne signifie pas absence de risque.",
+        "method": "Relire la these, isoler le passage lie a l'hypothese, puis produire une note locale avec un signal observable, une contradiction possible et une decision humaine proposee.",
+        "expected_signal": "Une observation locale qui soutient ou contredit clairement l'hypothese.",
+        "success_criteria": "Une preuve locale medium ou strong permet de reduire l'incertitude critique.",
+        "failure_criteria": "Aucun signal clair n'est trouve, ou le signal contredit l'hypothese critique.",
+        "estimated_effort_hours": 1.5,
+        "estimated_cost_eur": 0.0,
+        "status": "planned",
+        "result": "unknown",
+        "priority_score": 9.82,
+        "priority_reasons": [
+          "hypothese_critique",
+          "non_verifiee",
+          "aucune_preuve_locale",
+          "test_rapide",
+          "cout_zero",
+          "impact_decision"
+        ],
+        "created_at": "2026-06-13T10:47:03Z",
+        "updated_at": "2026-06-13T10:51:22Z"
+      }
+    ],
+    "completed_experiments": 0,
+    "conclusive_experiments": 0,
+    "inconclusive_experiments": 0,
+    "untested_assumptions": [
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-les-opportunites-proviennent-uniquement-de-memoires-lo",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Les opportunites proviennent uniquement de memoires locales.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-doctrine-cod4x-reste-prioritaire-sur-le-score-brut",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "La doctrine COD4X reste prioritaire sur le score brut.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-selection-propose-une-priorite-pas-une-execution",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "La selection propose une priorite, pas une execution.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-validation-humaine-est-obligatoire-avant-toute-acti",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "La validation humaine est obligatoire avant toute action reelle.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-est-un-proxy-pas-une-preuve-de-rev",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Le potentiel estime est un proxy, pas une preuve de revenu.",
+        "status": "unverified",
+        "importance": "critical"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-conviction-depend-de-la-qualite-des-scores-preceden",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "La conviction depend de la qualite des scores precedents.",
+        "status": "unverified",
+        "importance": "critical"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-l-absence-d-opportunite-bloquee-ne-signifie-pas-absenc",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "L'absence d'opportunite bloquee ne signifie pas absence de risque.",
+        "status": "unverified",
+        "importance": "critical"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-cout-estime-a-zero-ignore-possiblement-le-cout-d-op",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Le cout estime a zero ignore possiblement le cout d'opportunite du temps humain.",
+        "status": "unverified",
+        "importance": "critical"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-risque-a-verifier-certaines-alternatives-sont-promette",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Risque a verifier : Certaines alternatives sont prometteuses mais demandent plus de preuves.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-score-repose-sur-des-donnees-locales-et-peut-manque",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Le score repose sur des donnees locales et peut manquer de signaux externes.",
+        "status": "weakened",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-peut-etre-surevalue-faute-de-reven",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Le potentiel estime peut etre surevalue faute de revenu reel mesure.",
+        "status": "weakened",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-certaines-alternatives-sont-proches-du-top-et-pourraie",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Certaines alternatives sont proches du top et pourraient devenir meilleures avec peu de nouvelles donnees.",
+        "status": "weakened",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-une-tendance-roblox-locale-peut-etre-bruyante-ou-deja-",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Une tendance Roblox locale peut etre bruyante ou deja trop concurrentielle.",
+        "status": "weakened",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-scenario-d-echec-possible-le-temps-humain-disponible-e",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Scenario d'echec possible : Le temps humain disponible est insuffisant pour valider correctement l'opportunite.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-scenario-d-echec-possible-la-promesse-est-claire-sur-l",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Scenario d'echec possible : La promesse est claire sur le papier mais ne produit pas de signal reel.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-scenario-d-echec-possible-une-alternative-moins-bien-c",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Scenario d'echec possible : Une alternative moins bien classee se revele plus simple a concretiser.",
+        "status": "unverified",
+        "importance": "high"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-scenario-d-echec-possible-la-boucle-de-jeu-inspiree-pa",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Scenario d'echec possible : La boucle de jeu inspiree par la tendance ne se differencie pas assez.",
+        "status": "unverified",
+        "importance": "high"
+      }
+    ],
+    "next_recommended_experiment": {
+      "id": "experiment-assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-est-un-proxy-pas-une-preuve-de-rev",
+      "assumption_id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-est-un-proxy-pas-une-preuve-de-rev",
+      "source_type": "thesis",
+      "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+      "experiment_title": "Tester: Le potentiel estime est un proxy, pas une preuve de revenu.",
+      "objective": "Verifier localement l'hypothese: Le potentiel estime est un proxy, pas une preuve de revenu.",
+      "method": "Comparer l'estimation a la memoire locale: outcomes, cout reel, effort reel et revenu reel. Noter si une preuve locale soutient ou affaiblit l'hypothese.",
+      "expected_signal": "Un signal local mesurable relie a un revenu, un cout, un effort ou une intention humaine.",
+      "success_criteria": "Une preuve locale medium ou strong permet de reduire l'incertitude critique.",
+      "failure_criteria": "Aucun signal clair n'est trouve, ou le signal contredit l'hypothese critique.",
+      "estimated_effort_hours": 1.5,
+      "estimated_cost_eur": 0.0,
+      "status": "planned",
+      "result": "unknown",
+      "priority_score": 9.82,
+      "priority_reasons": [
+        "hypothese_critique",
+        "non_verifiee",
+        "aucune_preuve_locale",
+        "test_rapide",
+        "cout_zero",
+        "impact_decision"
+      ],
+      "created_at": "2026-06-13T10:47:03Z",
+      "updated_at": "2026-06-13T10:51:22Z"
+    },
+    "status_breakdown": {
+      "planned": 17
+    },
+    "result_breakdown": {
+      "unknown": 17
+    },
+    "guardrails": [
+      "Tout reste local.",
+      "Aucune API externe.",
+      "Aucun scraping.",
+      "Aucune publication.",
+      "Aucune action financiere.",
+      "Aucune execution externe.",
+      "Les experiences produisent uniquement des preuves locales.",
+      "Le module ne modifie pas les scores."
+    ]
+  }
+}

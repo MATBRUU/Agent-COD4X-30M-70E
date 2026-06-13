@@ -33,8 +33,8 @@ col2.metric("Approuvees", metrics.get("actions_approved", 0))
 col3.metric("Rejetees", metrics.get("actions_rejected", 0))
 col4.metric("Differees", metrics.get("actions_deferred", 0))
 
-tab_plan, tab_selection, tab_thesis, tab_reality, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
-    ["Plan", "Selection", "Thesis Engine", "Reality Engine", "Roblox", "Learning", "Memoire", "Journal"]
+tab_plan, tab_selection, tab_thesis, tab_reality, tab_experiments, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
+    ["Plan", "Selection", "Thesis Engine", "Reality Engine", "Experiments", "Roblox", "Learning", "Memoire", "Journal"]
 )
 
 with tab_plan:
@@ -415,6 +415,127 @@ with tab_reality:
 
     st.markdown("### Rapport Reality")
     st.json(reality_report)
+
+with tab_experiments:
+    st.subheader("Experiments")
+    st.caption("Tests locaux des hypotheses fragiles. Les experiences produisent uniquement des preuves locales.")
+
+    if st.button("Planifier les experiences"):
+        agent.plan_experiments()
+        st.success("Experiences locales generees depuis les hypotheses Reality.")
+        st.rerun()
+
+    if st.button("Actualiser le rapport experiments"):
+        agent.generate_experiment_report()
+        st.success("Rapport experiments mis a jour localement.")
+        st.rerun()
+
+    experiment_memory = agent.load_experiment_memory()
+    experiments = experiment_memory["experiments"].get("experiments", [])
+    experiment_report = experiment_memory["experiment_report"].get("report", {})
+    assumptions_by_id = {
+        item.get("id"): item
+        for item in agent.load_reality_memory()["assumptions"].get("assumptions", [])
+    }
+
+    priority_experiments = experiment_report.get("priority_experiments", [])
+    next_experiment = experiment_report.get("next_recommended_experiment")
+
+    metric_plan, metric_done, metric_conclusive, metric_inconclusive, metric_untested = st.columns(5)
+    metric_plan.metric("Planifiees", experiment_report.get("planned_experiments", 0))
+    metric_done.metric("Terminees", experiment_report.get("completed_experiments", 0))
+    metric_conclusive.metric("Concluantes", experiment_report.get("conclusive_experiments", 0))
+    metric_inconclusive.metric("Non concluantes", experiment_report.get("inconclusive_experiments", 0))
+    metric_untested.metric("Hypotheses non testees", len(experiment_report.get("untested_assumptions", [])))
+
+    st.markdown("### Prochaine experience recommandee")
+    if next_experiment:
+        st.write(f"**{next_experiment.get('experiment_title')}**")
+        st.write(next_experiment.get("objective"))
+        cols_next = st.columns(4)
+        cols_next[0].metric("Priorite", next_experiment.get("priority_score"))
+        cols_next[1].metric("Effort", f"{next_experiment.get('estimated_effort_hours')} h")
+        cols_next[2].metric("Cout", f"{next_experiment.get('estimated_cost_eur')} EUR")
+        cols_next[3].metric("Statut", next_experiment.get("status"))
+    else:
+        st.info("Aucune experience recommandee. Lancez la planification ou ajoutez des hypotheses non verifiees.")
+
+    st.markdown("### Experiences prioritaires")
+    if priority_experiments:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "titre": item.get("experiment_title"),
+                    "priorite": item.get("priority_score"),
+                    "statut": item.get("status"),
+                    "resultat": item.get("result"),
+                    "effort": item.get("estimated_effort_hours"),
+                    "cout": item.get("estimated_cost_eur"),
+                    "hypothese": assumptions_by_id.get(item.get("assumption_id"), {}).get("hypothesis", item.get("assumption_id")),
+                }
+                for item in priority_experiments
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune experience prioritaire disponible.")
+
+    st.markdown("### Toutes les experiences")
+    if experiments:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "titre": item.get("experiment_title"),
+                    "statut": item.get("status"),
+                    "resultat": item.get("result"),
+                    "priorite": item.get("priority_score"),
+                    "effort": item.get("estimated_effort_hours"),
+                    "cout": item.get("estimated_cost_eur"),
+                    "hypothese": assumptions_by_id.get(item.get("assumption_id"), {}).get("hypothesis", item.get("assumption_id")),
+                }
+                for item in experiments
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune experience locale planifiee.")
+
+    with st.expander("Mettre a jour une experience"):
+        experiment_ids = [item.get("id") for item in experiments]
+        with st.form("experiment-update-form"):
+            if experiment_ids:
+                experiment_id = st.selectbox("Experience", experiment_ids)
+            else:
+                experiment_id = st.text_input("ID experience")
+            status = st.selectbox("Statut", ["planned", "in_progress", "completed", "abandoned"])
+            result = st.selectbox("Resultat", ["unknown", "success", "failure", "inconclusive"])
+            notes = st.text_area("Notes locales")
+            submitted_experiment = st.form_submit_button("Enregistrer")
+
+            if submitted_experiment:
+                if not str(experiment_id).strip():
+                    st.error("ID experience obligatoire.")
+                else:
+                    agent.update_experiment(
+                        experiment_id=str(experiment_id),
+                        updates={
+                            "status": status,
+                            "result": result,
+                            "notes": notes,
+                        },
+                    )
+                    if status == "completed":
+                        st.success("Experience terminee, preuve locale creee et Reality regenere.")
+                    else:
+                        st.success("Experience mise a jour localement.")
+                    st.rerun()
+
+    st.markdown("### Rapport experiments")
+    st.json(experiment_report)
 
 with tab_roblox:
     st.subheader("Roblox Intelligence")

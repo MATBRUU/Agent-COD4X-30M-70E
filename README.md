@@ -31,6 +31,9 @@ Construire un socle minimal pour :
 |   `-- decisions.jsonl
 |-- memory/
 |   |-- doctrine.md
+|   |-- experiments/
+|   |   |-- experiment_report.json
+|   |   `-- experiments.json
 |   |-- learning/
 |   |   |-- learning_report.json
 |   |   |-- outcomes.json
@@ -52,6 +55,10 @@ Construire un socle minimal pour :
 |-- src/
 |   |-- agent.py
 |   |-- evaluator.py
+|   |-- experiments/
+|   |   |-- experiment_planner.py
+|   |   |-- experiment_report.py
+|   |   `-- experiment_tracker.py
 |   |-- learning/
 |   |   |-- conviction_engine.py
 |   |   |-- learning_loop.py
@@ -360,6 +367,74 @@ Le rapport Reality indique :
 - aucune execution externe ;
 - aucun changement automatique des decisions ;
 - aucun changement automatique des scores ;
+- validation humaine obligatoire avant toute action reelle.
+
+## Experiment Runner V1.5
+
+COD4X V1.5 transforme les hypotheses fragiles du Reality Engine en experiences locales concretes. Le module ne valide pas automatiquement une opportunite et ne modifie aucun score : il propose le test minimal, le signal attendu et les criteres de succes ou d'echec.
+
+### Hypothese, preuve et experience
+
+- Une hypothese est une croyance a verifier.
+- Une experience est un test local minimal pour produire un signal sur cette hypothese.
+- Une preuve est l'enregistrement local cree quand une experience terminee produit un resultat.
+
+Le flux attendu est :
+
+```text
+thesis -> reality-report -> experiment-plan -> experiment-update -> reality-report
+```
+
+Les experiences sont generees depuis `memory/reality/assumptions.json`, puis stockees dans `memory/experiments/experiments.json`. Le rapport est stocke dans `memory/experiments/experiment_report.json`.
+
+Chaque experience contient :
+
+- id ;
+- assumption_id ;
+- source_type et source_id ;
+- experiment_title ;
+- objective ;
+- method ;
+- expected_signal ;
+- success_criteria ;
+- failure_criteria ;
+- estimated_effort_hours ;
+- estimated_cost_eur ;
+- status : planned, in_progress, completed ou abandoned ;
+- result : unknown, success, failure ou inconclusive ;
+- created_at et updated_at.
+
+La priorisation fait ressortir les 3 experiences les plus utiles selon :
+
+- importance de l'hypothese ;
+- criticite ;
+- absence de preuve ;
+- effort estime ;
+- cout estime ;
+- impact sur la decision.
+
+Commandes :
+
+```bash
+python src/agent.py experiments
+python src/agent.py experiment-plan
+python src/agent.py experiment-update --experiment-id experiment-assumption-id --status completed --result success --notes "Signal local observe."
+python src/agent.py experiment-report
+```
+
+Quand une experience est marquee `completed`, COD4X cree automatiquement une preuve locale dans `memory/reality/evidence.json`, la rattache a l'hypothese testee et regenere `memory/reality/reality_report.json`.
+
+Garde-fous V1.5 :
+
+- tout reste local ;
+- aucune API externe ;
+- aucun scraping ;
+- aucun wallet ;
+- aucune publication ;
+- aucune action financiere ;
+- aucune execution externe ;
+- aucune modification automatique des scores ;
+- les experiences produisent uniquement des preuves locales ;
 - validation humaine obligatoire avant toute action reelle.
 
 ## Roblox Intelligence V2.1

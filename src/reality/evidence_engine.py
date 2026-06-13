@@ -56,6 +56,28 @@ def add_evidence(
     return normalized
 
 
+def add_or_update_evidence(
+    evidence: dict[str, Any],
+    path: str | Path = DEFAULT_EVIDENCE_PATH,
+) -> dict[str, Any]:
+    """Create or update one local evidence record by id."""
+    memory = load_evidence_memory(path)
+    records = memory.setdefault("evidence", [])
+    normalized = normalize_evidence(evidence)
+
+    for index, existing in enumerate(records):
+        if existing.get("id") == normalized["id"]:
+            merged = {**existing, **normalized}
+            merged["created_at"] = existing.get("created_at", normalized["created_at"])
+            records[index] = merged
+            save_evidence_memory(memory, path)
+            return merged
+
+    records.append(normalized)
+    save_evidence_memory(memory, path)
+    return normalized
+
+
 def evidence_index(records: list[dict[str, Any]]) -> dict[str, list[dict[str, Any]]]:
     grouped: dict[str, list[dict[str, Any]]] = {}
     for record in records:

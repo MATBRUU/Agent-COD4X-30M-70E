@@ -10,12 +10,15 @@ from typing import Any
 
 try:
     from .evaluator import score_actions
+    from .experiments.experiment_planner import generate_and_store_experiments
+    from .experiments.experiment_report import generate_and_store_experiment_report, load_experiment_report
+    from .experiments.experiment_tracker import evidence_from_completed_experiment, list_experiments, load_experiment_memory, update_experiment
     from .learning.conviction_engine import collect_scored_sources, generate_and_store_rationales, load_rationale_memory
     from .learning.learning_loop import generate_learning_report, load_learning_report
     from .learning.outcome_tracker import add_or_update_outcome, list_outcomes, load_outcome_memory
     from .planner import propose_weekly_actions
     from .reality.assumption_tracker import add_or_update_assumption, extract_assumptions_from_thesis, list_assumptions, load_assumption_memory
-    from .reality.evidence_engine import add_evidence, list_evidence, load_evidence_memory
+    from .reality.evidence_engine import add_evidence, add_or_update_evidence, list_evidence, load_evidence_memory
     from .reality.reality_report import generate_and_store_reality_report, load_reality_report
     from .roblox.concept_generator import generate_and_store_concepts, load_concept_memory
     from .roblox.spec_generator import generate_and_store_specs, load_spec_memory
@@ -26,12 +29,15 @@ try:
     from .thesis.thesis_engine import generate_and_store_thesis, load_thesis_memory
 except ImportError:  # Allows `python src/agent.py`.
     from evaluator import score_actions
+    from experiments.experiment_planner import generate_and_store_experiments
+    from experiments.experiment_report import generate_and_store_experiment_report, load_experiment_report
+    from experiments.experiment_tracker import evidence_from_completed_experiment, list_experiments, load_experiment_memory, update_experiment
     from learning.conviction_engine import collect_scored_sources, generate_and_store_rationales, load_rationale_memory
     from learning.learning_loop import generate_learning_report, load_learning_report
     from learning.outcome_tracker import add_or_update_outcome, list_outcomes, load_outcome_memory
     from planner import propose_weekly_actions
     from reality.assumption_tracker import add_or_update_assumption, extract_assumptions_from_thesis, list_assumptions, load_assumption_memory
-    from reality.evidence_engine import add_evidence, list_evidence, load_evidence_memory
+    from reality.evidence_engine import add_evidence, add_or_update_evidence, list_evidence, load_evidence_memory
     from reality.reality_report import generate_and_store_reality_report, load_reality_report
     from roblox.concept_generator import generate_and_store_concepts, load_concept_memory
     from roblox.spec_generator import generate_and_store_specs, load_spec_memory
@@ -72,6 +78,9 @@ class Cod4xAgent:
         self.assumptions_path = self.reality_memory_dir / "assumptions.json"
         self.evidence_path = self.reality_memory_dir / "evidence.json"
         self.reality_report_path = self.reality_memory_dir / "reality_report.json"
+        self.experiments_memory_dir = self.memory_dir / "experiments"
+        self.experiments_path = self.experiments_memory_dir / "experiments.json"
+        self.experiment_report_path = self.experiments_memory_dir / "experiment_report.json"
 
     def load_memory(self) -> dict[str, Any]:
         """Read persistent local memory."""
@@ -273,6 +282,45 @@ class Cod4xAgent:
             report_path=self.reality_report_path,
         )
 
+    def load_experiment_memory(self) -> dict[str, Any]:
+        """Read local experiment memory."""
+        return {
+            "experiments": load_experiment_memory(self.experiments_path),
+            "experiment_report": load_experiment_report(self.experiment_report_path),
+        }
+
+    def list_experiments(self) -> list[dict[str, Any]]:
+        """List local experiments."""
+        return list_experiments(self.experiments_path)
+
+    def plan_experiments(self) -> dict[str, Any]:
+        """Generate local experiments from fragile Reality assumptions."""
+        experiments = generate_and_store_experiments(
+            assumptions_path=self.assumptions_path,
+            evidence_path=self.evidence_path,
+            experiments_path=self.experiments_path,
+        )
+        self.generate_experiment_report()
+        return experiments
+
+    def update_experiment(self, experiment_id: str, updates: dict[str, Any]) -> dict[str, Any]:
+        """Update one experiment and create evidence when it is completed."""
+        experiment = update_experiment(experiment_id, updates, self.experiments_path)
+        evidence = evidence_from_completed_experiment(experiment)
+        if evidence:
+            add_or_update_evidence(evidence, self.evidence_path)
+            self.generate_reality_report()
+        self.generate_experiment_report()
+        return experiment
+
+    def generate_experiment_report(self) -> dict[str, Any]:
+        """Generate the local experiment report."""
+        return generate_and_store_experiment_report(
+            experiments_path=self.experiments_path,
+            assumptions_path=self.assumptions_path,
+            report_path=self.experiment_report_path,
+        )
+
     def read_decisions(self) -> list[dict[str, Any]]:
         """Read the JSONL decision journal."""
         if not self.decisions_path.exists():
@@ -367,6 +415,9 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("thesis-history", help="Read local thesis history")
     subparsers.add_parser("assumptions", help="List local assumptions")
     subparsers.add_parser("reality-report", help="Generate the local Reality report")
+    subparsers.add_parser("experiments", help="List local experiments")
+    subparsers.add_parser("experiment-plan", help="Generate local experiments from Reality assumptions")
+    subparsers.add_parser("experiment-report", help="Generate the local experiment report")
     subparsers.add_parser("outcome-list", help="List tracked outcomes")
     subparsers.add_parser("conviction-report", help="Generate score rationales")
     subparsers.add_parser("learning-report", help="Generate the local learning report")
@@ -419,6 +470,12 @@ def build_parser() -> argparse.ArgumentParser:
     evidence_parser.add_argument("--summary", required=True)
     evidence_parser.add_argument("--strength", choices=["weak", "medium", "strong"], default="medium")
     evidence_parser.add_argument("--supports-hypothesis", choices=["true", "false"], default="true")
+
+    experiment_update_parser = subparsers.add_parser("experiment-update", help="Update one local experiment")
+    experiment_update_parser.add_argument("--experiment-id", required=True)
+    experiment_update_parser.add_argument("--status", choices=["planned", "in_progress", "completed", "abandoned"])
+    experiment_update_parser.add_argument("--result", choices=["unknown", "success", "failure", "inconclusive"])
+    experiment_update_parser.add_argument("--notes", default=None)
     return parser
 
 
@@ -489,6 +546,30 @@ def main() -> None:
 
     if args.command == "reality-report":
         print(json.dumps(agent.generate_reality_report(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "experiments":
+        print(json.dumps(agent.list_experiments(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "experiment-plan":
+        print(json.dumps(agent.plan_experiments(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "experiment-update":
+        experiment = agent.update_experiment(
+            experiment_id=args.experiment_id,
+            updates={
+                "status": args.status,
+                "result": args.result,
+                "notes": args.notes,
+            },
+        )
+        print(json.dumps(experiment, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "experiment-report":
+        print(json.dumps(agent.generate_experiment_report(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "outcome-list":
