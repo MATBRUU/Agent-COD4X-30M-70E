@@ -39,6 +39,10 @@ Construire un socle minimal pour :
 |   |   |-- concepts.json
 |   |   |-- specs.json
 |   |   `-- trends.json
+|   |-- reality/
+|   |   |-- assumptions.json
+|   |   |-- evidence.json
+|   |   `-- reality_report.json
 |   |-- selection/
 |   |   |-- committee_report.json
 |   |   `-- opportunities.json
@@ -53,6 +57,10 @@ Construire un socle minimal pour :
 |   |   |-- learning_loop.py
 |   |   `-- outcome_tracker.py
 |   |-- planner.py
+|   |-- reality/
+|   |   |-- assumption_tracker.py
+|   |   |-- evidence_engine.py
+|   |   `-- reality_report.py
 |   |-- roblox/
 |   |   |-- concept_generator.py
 |   |   |-- spec_generator.py
@@ -302,6 +310,57 @@ COD4X genere donc :
 Cette couche evite l'auto-confirmation : COD4X ne se contente pas de dire "je choisis ceci", il explique aussi ou son raisonnement peut casser.
 
 Statut : experimental controle. Le module justifie uniquement des decisions existantes. Il ne lance aucune action externe, ne fait aucun scraping, n'appelle aucune API et ne genere aucun nouveau concept.
+
+## Reality Engine V1.4
+
+COD4X V1.4 ajoute une couche de verification des croyances. Le Reality Engine ne choisit pas a la place du comite et ne modifie pas les scores : il indique ce qui est prouve, suppose, inconnu, fragilise ou invalide.
+
+Il sert a repondre a une question simple : sur quelles hypotheses repose la decision actuelle, et quelles preuves locales existent vraiment ?
+
+### Hypothese, preuve et decision
+
+- Une hypothese est une croyance a verifier, liee a une action, un concept Roblox, une spec, une opportunite ou une these.
+- Une preuve est une observation locale : revue humaine, test local, benchmark, feedback, metrique ou note.
+- Une decision reste une proposition strategique ou une validation humaine. Elle n'est pas modifiee automatiquement par le Reality Engine.
+
+Quand une these est generee, COD4X extrait automatiquement des hypotheses depuis :
+
+- les hypotheses fragiles ;
+- les risques ;
+- les arguments en faveur ;
+- les contre-arguments ;
+- les scenarios d'echec.
+
+Ces hypotheses sont stockees dans `memory/reality/assumptions.json`. Les preuves sont stockees dans `memory/reality/evidence.json`. Le rapport global est stocke dans `memory/reality/reality_report.json`.
+
+Commandes :
+
+```bash
+python src/agent.py assumptions
+python src/agent.py assumption-add --source-type thesis --source-id thesis-local --hypothesis "Le potentiel estime doit etre confirme par un test local." --importance critical --confidence-percent 35
+python src/agent.py evidence-add --assumption-id assumption-thesis-thesis-local-le-potentiel-estime-doit-etre-confirme-par-un-test-local --evidence-type human_review --summary "Revue humaine effectuee, preuve encore insuffisante." --strength weak --supports-hypothesis true
+python src/agent.py reality-report
+```
+
+Le rapport Reality indique :
+
+- nombre total d'hypotheses ;
+- hypotheses validees, supportees, affaiblies, non verifiees et invalidees ;
+- hypotheses critiques non verifiees ;
+- preuves disponibles ;
+- niveau de realite global : unknown, speculative, mixed, grounded ou fragile ;
+- decisions qui reposent sur trop d'hypotheses non verifiees.
+
+### Limites V1.4
+
+- aucune API externe ;
+- aucun scraping ;
+- aucune publication ;
+- aucune action financiere ;
+- aucune execution externe ;
+- aucun changement automatique des decisions ;
+- aucun changement automatique des scores ;
+- validation humaine obligatoire avant toute action reelle.
 
 ## Roblox Intelligence V2.1
 

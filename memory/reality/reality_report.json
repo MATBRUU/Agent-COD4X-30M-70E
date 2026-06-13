@@ -1,0 +1,99 @@
+{
+  "version": 1,
+  "updated_at": "2026-06-12T21:28:12Z",
+  "source_policy": "local_only",
+  "report": {
+    "generated_at": "2026-06-12T21:28:12Z",
+    "total_assumptions": 27,
+    "validated_assumptions": 0,
+    "supported_assumptions": 10,
+    "unverified_assumptions": 13,
+    "invalidated_assumptions": 0,
+    "weakened_assumptions": 4,
+    "critical_unverified_assumptions": [
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-potentiel-estime-est-un-proxy-pas-une-preuve-de-rev",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Le potentiel estime est un proxy, pas une preuve de revenu.",
+        "status": "unverified",
+        "confidence_percent": 35,
+        "importance": "critical",
+        "created_at": "2026-06-12T21:25:37Z",
+        "updated_at": "2026-06-12T21:25:37Z"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-la-conviction-depend-de-la-qualite-des-scores-preceden",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "La conviction depend de la qualite des scores precedents.",
+        "status": "unverified",
+        "confidence_percent": 35,
+        "importance": "critical",
+        "created_at": "2026-06-12T21:25:37Z",
+        "updated_at": "2026-06-12T21:25:37Z"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-l-absence-d-opportunite-bloquee-ne-signifie-pas-absenc",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "L'absence d'opportunite bloquee ne signifie pas absence de risque.",
+        "status": "unverified",
+        "confidence_percent": 35,
+        "importance": "critical",
+        "created_at": "2026-06-12T21:25:37Z",
+        "updated_at": "2026-06-12T21:25:37Z"
+      },
+      {
+        "id": "assumption-thesis-thesis-roblox-cozy-collection-roleplay-mvp-20260612t212537z-le-cout-estime-a-zero-ignore-possiblement-le-cout-d-op",
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "hypothesis": "Le cout estime a zero ignore possiblement le cout d'opportunite du temps humain.",
+        "status": "unverified",
+        "confidence_percent": 35,
+        "importance": "critical",
+        "created_at": "2026-06-12T21:25:37Z",
+        "updated_at": "2026-06-12T21:25:37Z"
+      }
+    ],
+    "evidence_available": 0,
+    "assumptions_with_evidence": 0,
+    "status_breakdown": {
+      "unverified": 13,
+      "supported": 10,
+      "weakened": 4
+    },
+    "importance_breakdown": {
+      "high": 17,
+      "critical": 4,
+      "medium": 6
+    },
+    "global_reality_level": "fragile",
+    "decisions_too_speculative": [
+      {
+        "source_type": "thesis",
+        "source_id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+        "decision": "pursue",
+        "opportunity": "Roleplay cozy avec collection et decoration MVP",
+        "unverified_or_weakened_count": 17,
+        "critical_unverified_count": 4,
+        "evidence_count": 0,
+        "reason": "Decision fondee sur trop d'hypotheses non verifiees ou critiques."
+      }
+    ],
+    "alerts": [
+      "4 hypothese(s) critique(s) non verifiee(s).",
+      "1 decision(s) reposent sur trop d'hypotheses fragiles."
+    ],
+    "guardrails": [
+      "Tout reste local.",
+      "Aucune API externe.",
+      "Aucun scraping.",
+      "Aucune publication.",
+      "Aucune action financiere.",
+      "Aucune execution externe.",
+      "Le Reality Engine ne modifie pas les scores ni les decisions.",
+      "Validation humaine obligatoire avant toute action reelle."
+    ]
+  }
+}

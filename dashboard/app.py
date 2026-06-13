@@ -33,8 +33,8 @@ col2.metric("Approuvees", metrics.get("actions_approved", 0))
 col3.metric("Rejetees", metrics.get("actions_rejected", 0))
 col4.metric("Differees", metrics.get("actions_deferred", 0))
 
-tab_plan, tab_selection, tab_thesis, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
-    ["Plan", "Selection", "Thesis Engine", "Roblox", "Learning", "Memoire", "Journal"]
+tab_plan, tab_selection, tab_thesis, tab_reality, tab_roblox, tab_learning, tab_memory, tab_log = st.tabs(
+    ["Plan", "Selection", "Thesis Engine", "Reality Engine", "Roblox", "Learning", "Memoire", "Journal"]
 )
 
 with tab_plan:
@@ -275,6 +275,146 @@ with tab_thesis:
         )
     else:
         st.info("Historique vide.")
+
+with tab_reality:
+    st.subheader("Reality Engine")
+    st.caption("Qualification locale des croyances. Le module ne modifie ni scores, ni decisions.")
+
+    if st.button("Actualiser le rapport Reality"):
+        agent.generate_reality_report()
+        st.success("Rapport Reality mis a jour localement.")
+        st.rerun()
+
+    reality_memory = agent.load_reality_memory()
+    assumptions = reality_memory["assumptions"].get("assumptions", [])
+    evidence_records = reality_memory["evidence"].get("evidence", [])
+    reality_report = reality_memory["reality_report"].get("report", {})
+
+    with st.expander("Ajouter une hypothese"):
+        with st.form("reality-assumption-form"):
+            source_type = st.selectbox(
+                "Source",
+                ["action", "roblox_concept", "roblox_spec", "thesis", "opportunity", "other"],
+            )
+            source_id = st.text_input("ID source")
+            hypothesis = st.text_area("Hypothese")
+            status = st.selectbox("Statut", ["unverified", "supported", "validated", "weakened", "invalidated", "unknown"])
+            importance = st.selectbox("Importance", ["low", "medium", "high", "critical"], index=1)
+            confidence = st.slider("Confiance", 0, 100, 50)
+            submitted_assumption = st.form_submit_button("Enregistrer l'hypothese")
+
+            if submitted_assumption:
+                if not source_id.strip() or not hypothesis.strip():
+                    st.error("ID source et hypothese sont obligatoires.")
+                else:
+                    agent.add_assumption(
+                        {
+                            "source_type": source_type,
+                            "source_id": source_id,
+                            "hypothesis": hypothesis,
+                            "status": status,
+                            "confidence_percent": confidence,
+                            "importance": importance,
+                        }
+                    )
+                    st.success("Hypothese enregistree localement.")
+                    st.rerun()
+
+    with st.expander("Ajouter une preuve locale"):
+        assumption_options = [item.get("id") for item in assumptions]
+        with st.form("reality-evidence-form"):
+            if assumption_options:
+                assumption_id = st.selectbox("Hypothese", assumption_options)
+            else:
+                assumption_id = st.text_input("ID hypothese")
+            evidence_type = st.selectbox("Type de preuve", ["human_review", "local_test", "benchmark", "user_feedback", "metric", "note", "other"])
+            strength = st.selectbox("Force", ["weak", "medium", "strong"], index=1)
+            supports = st.checkbox("La preuve soutient l'hypothese", value=True)
+            summary = st.text_area("Resume")
+            submitted_evidence = st.form_submit_button("Enregistrer la preuve")
+
+            if submitted_evidence:
+                if not str(assumption_id).strip() or not summary.strip():
+                    st.error("ID hypothese et resume sont obligatoires.")
+                else:
+                    agent.add_evidence(
+                        {
+                            "assumption_id": assumption_id,
+                            "evidence_type": evidence_type,
+                            "summary": summary,
+                            "strength": strength,
+                            "supports_hypothesis": supports,
+                        }
+                    )
+                    st.success("Preuve enregistree localement.")
+                    st.rerun()
+
+    metric_total, metric_validated, metric_unverified, metric_invalidated, metric_reality = st.columns(5)
+    metric_total.metric("Hypotheses", reality_report.get("total_assumptions", len(assumptions)))
+    metric_validated.metric("Validees", reality_report.get("validated_assumptions", 0))
+    metric_unverified.metric("Non verifiees", reality_report.get("unverified_assumptions", 0))
+    metric_invalidated.metric("Invalidees", reality_report.get("invalidated_assumptions", 0))
+    metric_reality.metric("Niveau", reality_report.get("global_reality_level", "unknown"))
+
+    st.markdown("### Alertes")
+    for alert in reality_report.get("alerts", ["Aucun rapport Reality genere."]):
+        st.warning(alert, icon="!")
+
+    st.markdown("### Hypotheses par statut")
+    if assumptions:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "source": item.get("source_type"),
+                    "source_id": item.get("source_id"),
+                    "hypothese": item.get("hypothesis"),
+                    "statut": item.get("status"),
+                    "importance": item.get("importance"),
+                    "confiance": item.get("confidence_percent"),
+                }
+                for item in assumptions
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.info("Aucune hypothese enregistree.")
+
+    st.markdown("### Hypotheses critiques non verifiees")
+    critical_unverified = reality_report.get("critical_unverified_assumptions", [])
+    if critical_unverified:
+        st.dataframe(
+            [
+                {
+                    "id": item.get("id"),
+                    "source_id": item.get("source_id"),
+                    "hypothese": item.get("hypothesis"),
+                    "confiance": item.get("confidence_percent"),
+                }
+                for item in critical_unverified
+            ],
+            use_container_width=True,
+            hide_index=True,
+        )
+    else:
+        st.success("Aucune hypothese critique non verifiee signalee.")
+
+    st.markdown("### Preuves enregistrees")
+    if evidence_records:
+        st.dataframe(evidence_records, use_container_width=True, hide_index=True)
+    else:
+        st.info("Aucune preuve locale enregistree.")
+
+    st.markdown("### Decisions trop speculatives")
+    speculative = reality_report.get("decisions_too_speculative", [])
+    if speculative:
+        st.dataframe(speculative, use_container_width=True, hide_index=True)
+    else:
+        st.info("Aucune decision trop speculative detectee par le rapport actuel.")
+
+    st.markdown("### Rapport Reality")
+    st.json(reality_report)
 
 with tab_roblox:
     st.subheader("Roblox Intelligence")

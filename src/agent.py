@@ -14,6 +14,9 @@ try:
     from .learning.learning_loop import generate_learning_report, load_learning_report
     from .learning.outcome_tracker import add_or_update_outcome, list_outcomes, load_outcome_memory
     from .planner import propose_weekly_actions
+    from .reality.assumption_tracker import add_or_update_assumption, extract_assumptions_from_thesis, list_assumptions, load_assumption_memory
+    from .reality.evidence_engine import add_evidence, list_evidence, load_evidence_memory
+    from .reality.reality_report import generate_and_store_reality_report, load_reality_report
     from .roblox.concept_generator import generate_and_store_concepts, load_concept_memory
     from .roblox.spec_generator import generate_and_store_specs, load_spec_memory
     from .roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
@@ -27,6 +30,9 @@ except ImportError:  # Allows `python src/agent.py`.
     from learning.learning_loop import generate_learning_report, load_learning_report
     from learning.outcome_tracker import add_or_update_outcome, list_outcomes, load_outcome_memory
     from planner import propose_weekly_actions
+    from reality.assumption_tracker import add_or_update_assumption, extract_assumptions_from_thesis, list_assumptions, load_assumption_memory
+    from reality.evidence_engine import add_evidence, list_evidence, load_evidence_memory
+    from reality.reality_report import generate_and_store_reality_report, load_reality_report
     from roblox.concept_generator import generate_and_store_concepts, load_concept_memory
     from roblox.spec_generator import generate_and_store_specs, load_spec_memory
     from roblox.trend_analyzer import load_trend_memory, register_trend, weekly_report
@@ -62,6 +68,10 @@ class Cod4xAgent:
         self.committee_report_path = self.selection_memory_dir / "committee_report.json"
         self.thesis_memory_dir = self.memory_dir / "thesis"
         self.theses_path = self.thesis_memory_dir / "theses.json"
+        self.reality_memory_dir = self.memory_dir / "reality"
+        self.assumptions_path = self.reality_memory_dir / "assumptions.json"
+        self.evidence_path = self.reality_memory_dir / "evidence.json"
+        self.reality_report_path = self.reality_memory_dir / "reality_report.json"
 
     def load_memory(self) -> dict[str, Any]:
         """Read persistent local memory."""
@@ -217,9 +227,50 @@ class Cod4xAgent:
     def generate_thesis(self) -> dict[str, Any]:
         """Generate a thesis from the current committee report."""
         committee_report = load_committee_report(self.committee_report_path)
-        return generate_and_store_thesis(
+        thesis = generate_and_store_thesis(
             committee_report=committee_report,
             path=self.theses_path,
+        )
+        if thesis.get("status") != "missing_selection":
+            extract_assumptions_from_thesis(thesis, self.assumptions_path)
+            self.generate_reality_report()
+        return thesis
+
+    def load_reality_memory(self) -> dict[str, Any]:
+        """Read local Reality Engine memory."""
+        return {
+            "assumptions": load_assumption_memory(self.assumptions_path),
+            "evidence": load_evidence_memory(self.evidence_path),
+            "reality_report": load_reality_report(self.reality_report_path),
+        }
+
+    def list_assumptions(self) -> list[dict[str, Any]]:
+        """List local assumptions."""
+        return list_assumptions(self.assumptions_path)
+
+    def list_evidence(self) -> list[dict[str, Any]]:
+        """List local evidence records."""
+        return list_evidence(self.evidence_path)
+
+    def add_assumption(self, assumption: dict[str, Any]) -> dict[str, Any]:
+        """Add or update one local assumption."""
+        record = add_or_update_assumption(assumption, self.assumptions_path)
+        self.generate_reality_report()
+        return record
+
+    def add_evidence(self, evidence: dict[str, Any]) -> dict[str, Any]:
+        """Add one local evidence record."""
+        record = add_evidence(evidence, self.evidence_path)
+        self.generate_reality_report()
+        return record
+
+    def generate_reality_report(self) -> dict[str, Any]:
+        """Generate a local report about assumption solidity."""
+        return generate_and_store_reality_report(
+            assumptions_path=self.assumptions_path,
+            evidence_path=self.evidence_path,
+            theses_path=self.theses_path,
+            report_path=self.reality_report_path,
         )
 
     def read_decisions(self) -> list[dict[str, Any]]:
@@ -314,6 +365,8 @@ def build_parser() -> argparse.ArgumentParser:
     subparsers.add_parser("committee-report", help="Generate the local committee report")
     subparsers.add_parser("thesis", help="Generate a strategic thesis from the current committee report")
     subparsers.add_parser("thesis-history", help="Read local thesis history")
+    subparsers.add_parser("assumptions", help="List local assumptions")
+    subparsers.add_parser("reality-report", help="Generate the local Reality report")
     subparsers.add_parser("outcome-list", help="List tracked outcomes")
     subparsers.add_parser("conviction-report", help="Generate score rationales")
     subparsers.add_parser("learning-report", help="Generate the local learning report")
@@ -351,6 +404,21 @@ def build_parser() -> argparse.ArgumentParser:
     outcome_parser.add_argument("--real-revenue-eur", type=float, default=0.0)
     outcome_parser.add_argument("--qualitative-feedback", default="")
     outcome_parser.add_argument("--reason-if-abandoned", default="")
+
+    assumption_parser = subparsers.add_parser("assumption-add", help="Add or update one local assumption")
+    assumption_parser.add_argument("--source-type", required=True, choices=["action", "roblox_concept", "roblox_spec", "thesis", "opportunity", "other"])
+    assumption_parser.add_argument("--source-id", required=True)
+    assumption_parser.add_argument("--hypothesis", required=True)
+    assumption_parser.add_argument("--status", choices=["unverified", "supported", "validated", "weakened", "invalidated", "unknown"], default="unverified")
+    assumption_parser.add_argument("--confidence-percent", type=int, default=50)
+    assumption_parser.add_argument("--importance", choices=["low", "medium", "high", "critical"], default="medium")
+
+    evidence_parser = subparsers.add_parser("evidence-add", help="Add local evidence for one assumption")
+    evidence_parser.add_argument("--assumption-id", required=True)
+    evidence_parser.add_argument("--evidence-type", choices=["human_review", "local_test", "benchmark", "user_feedback", "metric", "note", "other"], default="note")
+    evidence_parser.add_argument("--summary", required=True)
+    evidence_parser.add_argument("--strength", choices=["weak", "medium", "strong"], default="medium")
+    evidence_parser.add_argument("--supports-hypothesis", choices=["true", "false"], default="true")
     return parser
 
 
@@ -386,6 +454,41 @@ def main() -> None:
 
     if args.command == "thesis-history":
         print(json.dumps(agent.load_thesis_memory(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "assumptions":
+        print(json.dumps(agent.list_assumptions(), indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "assumption-add":
+        assumption = agent.add_assumption(
+            {
+                "source_type": args.source_type,
+                "source_id": args.source_id,
+                "hypothesis": args.hypothesis,
+                "status": args.status,
+                "confidence_percent": args.confidence_percent,
+                "importance": args.importance,
+            }
+        )
+        print(json.dumps(assumption, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "evidence-add":
+        evidence = agent.add_evidence(
+            {
+                "assumption_id": args.assumption_id,
+                "evidence_type": args.evidence_type,
+                "summary": args.summary,
+                "strength": args.strength,
+                "supports_hypothesis": args.supports_hypothesis == "true",
+            }
+        )
+        print(json.dumps(evidence, indent=2, ensure_ascii=False))
+        return
+
+    if args.command == "reality-report":
+        print(json.dumps(agent.generate_reality_report(), indent=2, ensure_ascii=False))
         return
 
     if args.command == "outcome-list":

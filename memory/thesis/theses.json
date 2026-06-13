@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updated_at": "2026-06-12T21:05:49Z",
+  "updated_at": "2026-06-12T21:25:37Z",
   "source_policy": "local_only",
   "theses": [
     {
@@ -849,6 +849,431 @@
     {
       "id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T210549Z",
       "date": "2026-06-12T21:05:49Z",
+      "opportunity": "Roleplay cozy avec collection et decoration MVP",
+      "selected_opportunity": "Roleplay cozy avec collection et decoration MVP",
+      "selected_opportunity_id": "roblox-cozy-collection-roleplay-mvp",
+      "source_type": "roblox_concept",
+      "score": 8.8,
+      "selection_score": 9.29,
+      "conviction": 90,
+      "decision": "pursue",
+      "summary": "COD4X retient 'Roleplay cozy avec collection et decoration MVP' avec une decision pursue car son score de selection (9.29/10), sa conviction (90%) et son rapport effort / potentiel sont les plus favorables parmi les opportunites locales analysees.",
+      "executive_summary": "COD4X retient 'Roleplay cozy avec collection et decoration MVP' avec une decision pursue car son score de selection (9.29/10), sa conviction (90%) et son rapport effort / potentiel sont les plus favorables parmi les opportunites locales analysees.",
+      "hypotheses_principales": [
+        "Les opportunites proviennent uniquement de memoires locales.",
+        "La doctrine COD4X reste prioritaire sur le score brut.",
+        "La selection propose une priorite, pas une execution.",
+        "La validation humaine est obligatoire avant toute action reelle."
+      ],
+      "advantages": [
+        "Score initial de 8.8/10.",
+        "Score de selection de 9.29/10.",
+        "Conviction locale de 90%.",
+        "Risque estime faible.",
+        "Cout estime nul ou tres faible.",
+        "Potentiel estime documente."
+      ],
+      "disadvantages": [
+        "Depend d'une tendance Roblox locale qui peut etre incomplete.",
+        "Pas encore de resultat reel enregistre pour confirmer le score."
+      ],
+      "risks": [
+        "Certaines alternatives sont prometteuses mais demandent plus de preuves."
+      ],
+      "resources_required": {
+        "human_time_hours": 8.0,
+        "cost_eur": 0.0,
+        "validation": "Validation humaine obligatoire avant toute action reelle.",
+        "local_assets": {
+          "type": "lean_mvp",
+          "source_trend_ids": [
+            "roblox-cozy-collection-roleplay"
+          ],
+          "constraints": [
+            "local_only",
+            "no_publication",
+            "no_spend",
+            "no_wallet_write"
+          ]
+        }
+      },
+      "estimated_time": 8.0,
+      "estimated_cost": 0.0,
+      "estimated_potential": 2160.0,
+      "reasons": [
+        "Roleplay cozy avec collection et decoration MVP est retenue car elle combine un score de selection de 9.29/10, une conviction de 90%, un risque de 2/10 et un effort estime a 8.0 heure(s).",
+        "L'opportunite retenue presente le meilleur compromis local entre score, conviction, risque, effort et potentiel.",
+        "Le cout estime est nul ou tres faible.",
+        "La coherence strategique est forte."
+      ],
+      "justification": "Le rapport effort / potentiel est superieur aux autres opportunites disponibles. Score de selection: 9.29/10, conviction: 90%, effort estime: 8.0 heure(s), cout estime: 0.0 EUR, risque: 2/10.",
+      "recommendation": {
+        "decision": "pursue",
+        "confidence_percent": 95,
+        "justification": "Le rapport effort / potentiel est superieur aux autres opportunites disponibles. Score de selection: 9.29/10, conviction: 90%, effort estime: 8.0 heure(s), cout estime: 0.0 EUR, risque: 2/10.",
+        "human_next_steps": [
+          "Relire manuellement l'opportunite retenue : Roleplay cozy avec collection et decoration MVP.",
+          "Verifier le temps humain disponible avant de poursuivre.",
+          "Definir un critere de succes local et mesurable.",
+          "Ne lancer aucune action externe sans validation explicite."
+        ]
+      },
+      "alternative_comparisons": [
+        {
+          "id": "cod4x-weekly-offer-map",
+          "title": "Cartographier une micro-offre numerique",
+          "source_type": "action",
+          "decision": "rejected",
+          "score": 9.7,
+          "selection_score": 9.11,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale.",
+            "Risque estime faible."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.18 point(s) au top."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.18 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-cozy-collection-roleplay-challenge",
+          "title": "Defi social Roleplay cozy avec collection et decoration",
+          "source_type": "roblox_concept",
+          "decision": "rejected",
+          "score": 8.6,
+          "selection_score": 8.88,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.41 point(s) au top."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.41 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "cod4x-weekly-asset-inventory",
+          "title": "Inventorier les actifs monetisables",
+          "source_type": "action",
+          "decision": "rejected",
+          "score": 9.2,
+          "selection_score": 8.87,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Bonne coherence avec la doctrine locale.",
+            "Risque estime faible."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.42 point(s) au top."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.42 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-ugc-tycoon-hybrid-mvp",
+          "title": "Tycoon hybride avec objets UGC-like MVP",
+          "source_type": "roblox_concept",
+          "decision": "rejected",
+          "score": 8.5,
+          "selection_score": 8.85,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.44 point(s) au top."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.44 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-ugc-tycoon-hybrid-challenge",
+          "title": "Defi social Tycoon hybride avec objets UGC-like",
+          "source_type": "roblox_concept",
+          "decision": "rejected",
+          "score": 8.2,
+          "selection_score": 8.74,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.55 point(s) au top."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.55 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+          "title": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+          "source_type": "roblox_concept",
+          "decision": "rejected",
+          "score": 8.6,
+          "selection_score": 8.63,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.66 point(s) au top.",
+            "Effort humain estime important."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.66 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "roblox-anime-battlegrounds-lite-mvp",
+          "title": "Anime battlegrounds courts et accessibles MVP",
+          "source_type": "roblox_concept",
+          "decision": "rejected",
+          "score": 8.1,
+          "selection_score": 8.36,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.93 point(s) au top.",
+            "Risque superieur au niveau ideal."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.93 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "cod4x-weekly-validation-plan",
+          "title": "Preparer un protocole de validation humaine",
+          "source_type": "action",
+          "decision": "rejected",
+          "score": 8.4,
+          "selection_score": 8.32,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 0.97 point(s) au top."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 0.97 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-cozy-collection-roleplay-mvp",
+          "title": "Roleplay cozy avec collection et decoration",
+          "source_type": "roblox_spec",
+          "decision": "rejected",
+          "score": 8.8,
+          "selection_score": 7.76,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 1.53 point(s) au top.",
+            "Risque superieur au niveau ideal.",
+            "Effort humain estime important."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 1.53 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-cozy-collection-roleplay-challenge",
+          "title": "Defi social Roleplay cozy avec collection et decoration",
+          "source_type": "roblox_spec",
+          "decision": "rejected",
+          "score": 8.6,
+          "selection_score": 7.67,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 1.62 point(s) au top.",
+            "Risque superieur au niveau ideal.",
+            "Effort humain estime important."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 1.62 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-ugc-tycoon-hybrid-mvp",
+          "title": "Tycoon hybride avec objets UGC-like",
+          "source_type": "roblox_spec",
+          "decision": "rejected",
+          "score": 8.5,
+          "selection_score": 7.63,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 1.66 point(s) au top.",
+            "Risque superieur au niveau ideal.",
+            "Effort humain estime important."
+          ],
+          "raison_du_rejet": [
+            "Score de selection inferieur de 1.66 point(s) a l'opportunite retenue."
+          ]
+        },
+        {
+          "id": "spec-roblox-hybrid-roblox-anime-battlegrounds-lite-roblox-cozy-collection-roleplay",
+          "title": "Hybrid: Anime battlegrounds courts et accessibles x Roleplay cozy avec collection et decoration",
+          "source_type": "roblox_spec",
+          "decision": "watch",
+          "score": 8.6,
+          "selection_score": 7.22,
+          "points_forts": [
+            "Score initial eleve.",
+            "Conviction locale forte.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 2.07 point(s) au top.",
+            "Risque superieur au niveau ideal.",
+            "Effort humain estime important."
+          ],
+          "raison_du_rejet": [
+            "Score intermediaire : interessant, mais pas assez fort pour etre prioritaire.",
+            "Risque eleve a clarifier avant engagement.",
+            "Effort eleve : attendre plus de preuves ou reduire le scope."
+          ]
+        },
+        {
+          "id": "spec-roblox-ugc-tycoon-hybrid-challenge",
+          "title": "Defi social Tycoon hybride avec objets UGC-like",
+          "source_type": "roblox_spec",
+          "decision": "watch",
+          "score": 8.2,
+          "selection_score": 7.15,
+          "points_forts": [
+            "Score initial eleve.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 2.14 point(s) au top.",
+            "Risque superieur au niveau ideal.",
+            "Effort humain estime important.",
+            "Conviction plus faible que les meilleures opportunites."
+          ],
+          "raison_du_rejet": [
+            "Score intermediaire : interessant, mais pas assez fort pour etre prioritaire.",
+            "Risque eleve a clarifier avant engagement.",
+            "Effort eleve : attendre plus de preuves ou reduire le scope."
+          ]
+        },
+        {
+          "id": "spec-roblox-anime-battlegrounds-lite-mvp",
+          "title": "Anime battlegrounds courts et accessibles",
+          "source_type": "roblox_spec",
+          "decision": "watch",
+          "score": 8.1,
+          "selection_score": 7.1,
+          "points_forts": [
+            "Score initial eleve.",
+            "Cout estime nul ou tres faible.",
+            "Potentiel estime important.",
+            "Bonne coherence avec la doctrine locale."
+          ],
+          "points_faibles": [
+            "Score de selection inferieur de 2.19 point(s) au top.",
+            "Risque superieur au niveau ideal.",
+            "Effort humain estime important.",
+            "Conviction plus faible que les meilleures opportunites."
+          ],
+          "raison_du_rejet": [
+            "Score intermediaire : interessant, mais pas assez fort pour etre prioritaire.",
+            "Risque eleve a clarifier avant engagement.",
+            "Effort eleve : attendre plus de preuves ou reduire le scope."
+          ]
+        }
+      ],
+      "counter_arguments": [
+        "Le score repose sur des donnees locales et peut manquer de signaux externes.",
+        "Le potentiel estime peut etre surevalue faute de revenu reel mesure.",
+        "Certaines alternatives sont proches du top et pourraient devenir meilleures avec peu de nouvelles donnees.",
+        "Une tendance Roblox locale peut etre bruyante ou deja trop concurrentielle."
+      ],
+      "contre_arguments": [
+        "Le score repose sur des donnees locales et peut manquer de signaux externes.",
+        "Le potentiel estime peut etre surevalue faute de revenu reel mesure.",
+        "Certaines alternatives sont proches du top et pourraient devenir meilleures avec peu de nouvelles donnees.",
+        "Une tendance Roblox locale peut etre bruyante ou deja trop concurrentielle."
+      ],
+      "failure_scenarios": [
+        "Le temps humain disponible est insuffisant pour valider correctement l'opportunite.",
+        "La promesse est claire sur le papier mais ne produit pas de signal reel.",
+        "Une alternative moins bien classee se revele plus simple a concretiser.",
+        "La boucle de jeu inspiree par la tendance ne se differencie pas assez."
+      ],
+      "fragile_assumptions": [
+        "Le potentiel estime est un proxy, pas une preuve de revenu.",
+        "La conviction depend de la qualite des scores precedents.",
+        "L'absence d'opportunite bloquee ne signifie pas absence de risque.",
+        "Le cout estime a zero ignore possiblement le cout d'opportunite du temps humain."
+      ],
+      "anti_bias_question": "Pourquoi cette decision pourrait etre mauvaise ?",
+      "guardrails": [
+        "Tout reste local.",
+        "Aucune API externe.",
+        "Aucun scraping.",
+        "Aucun wallet.",
+        "Aucune publication.",
+        "Aucune action financiere.",
+        "Aucune execution externe.",
+        "Validation humaine obligatoire."
+      ],
+      "external_execution": false
+    },
+    {
+      "id": "thesis-roblox-cozy-collection-roleplay-mvp-20260612T212537Z",
+      "date": "2026-06-12T21:25:37Z",
       "opportunity": "Roleplay cozy avec collection et decoration MVP",
       "selected_opportunity": "Roleplay cozy avec collection et decoration MVP",
       "selected_opportunity_id": "roblox-cozy-collection-roleplay-mvp",
